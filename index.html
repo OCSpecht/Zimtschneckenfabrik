@@ -1,0 +1,1541 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Jeden Tag eine frische Zimtschnecke">
+<meta name="theme-color" content="#efedf2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#17131b" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Zimt-Fabrik">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="apple-touch-icon.png">
+<title>Zimtschnecken-Fabrik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Zimtschnecken-Fabrik: jeden Tag eine Zimtschnecke vernaschen, darin ein positiver Gedanke, etwas zum Schmunzeln und vier Häppchen. Farben: Violett Psychologie, Himbeer Physiologie, Petrol Gehirn, Blau Allgemeinwissen, Zimt für alles Süße. */
+:root {
+  --bg: #efedf2;
+  --surface: #fdfcfe;
+  --ink: #241c2b;
+  --muted: #675e70;
+  --line: #d9d3df;
+  --zimt: #a9531c;
+  --zimt-wash: #f6e9df;
+  --psyche: #6447bf;
+  --phys: #b3304f;
+  --hirn: #0f7a74;
+  --allg: #2a62ad;
+  --bun: #e7ad68;
+  --bun-dark: #c98a45;
+  --plate: #ffffff;
+  --shadow: 0 1px 2px rgba(36, 28, 43, .06), 0 10px 30px -12px rgba(36, 28, 43, .22);
+  --f-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17131b; --surface: #221c28; --ink: #f0ebf4; --muted: #a59cad; --line: #3a3241;
+    --zimt: #e3925a; --zimt-wash: #2e2220;
+    --psyche: #ae98f2; --phys: #f08aa5; --hirn: #55c7bb; --allg: #86b4f2;
+    --bun: #d99b57; --bun-dark: #b87a3a; --plate: #2c2532;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px -14px rgba(0, 0, 0, .7);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17131b; --surface: #221c28; --ink: #f0ebf4; --muted: #a59cad; --line: #3a3241;
+  --zimt: #e3925a; --zimt-wash: #2e2220;
+  --psyche: #ae98f2; --phys: #f08aa5; --hirn: #55c7bb; --allg: #86b4f2;
+  --bun: #d99b57; --bun-dark: #b87a3a; --plate: #2c2532;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px -14px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+.wrap {
+  max-width: 580px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: calc(28px + env(safe-area-inset-top, 0px)) calc(40px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+a { color: inherit; }
+button { font: inherit; color: inherit; -webkit-appearance: none; appearance: none; }
+:focus-visible { outline: 3px solid var(--psyche); outline-offset: 2px; }
+
+header { display: flex; flex-direction: column; gap: 6px; }
+.eyebrow, .label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(36px, 10.5vw, 54px);
+  line-height: .98;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+}
+h1 .zimt { color: var(--zimt); }
+.meta { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); }
+
+/* Die Zimtschnecke zum Vernaschen */
+.gate { display: flex; flex-direction: column; align-items: center; gap: 14px; padding-block: 4px; text-align: center; }
+.oven { position: relative; width: min(230px, 62vw); cursor: pointer; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
+.oven svg { display: block; width: 100%; height: auto; overflow: visible; }
+.oven .roll { transform-origin: 110px 105px; transform-box: view-box; transition: transform .45s cubic-bezier(.5, 0, .7, 1), opacity .45s; }
+.oven.gone .roll { transform: scale(.2) translateY(60px); opacity: 0; }
+.oven.wobble .roll { animation: wobble .28s ease-out; }
+@keyframes wobble { 0% { transform: scale(1); } 40% { transform: scale(.96) rotate(-2deg); } 100% { transform: scale(1); } }
+.steam path { fill: none; stroke: var(--muted); stroke-width: 3; stroke-linecap: round; opacity: .35; animation: steam 3.2s ease-in-out infinite; }
+.steam path:nth-child(2) { animation-delay: 1s; }
+.steam path:nth-child(3) { animation-delay: 2s; }
+@keyframes steam { 0% { transform: translateY(6px); opacity: 0; } 30% { opacity: .38; } 100% { transform: translateY(-14px); opacity: 0; } }
+.oven.gone .steam { opacity: 0; transition: opacity .3s; }
+.plate { fill: var(--plate); stroke: var(--line); stroke-width: 1.5; }
+.no {
+  position: absolute; right: 4%; top: 6%;
+  font-family: var(--f-display); font-weight: 800; font-size: 15px;
+  background: var(--ink); color: var(--bg); border-radius: 999px; padding: 4px 11px; transform: rotate(6deg);
+}
+.crumb { position: absolute; width: 7px; height: 7px; border-radius: 50%; background: var(--bun-dark); pointer-events: none; }
+.yum { position: absolute; font-family: var(--f-display); font-weight: 800; font-size: 20px; color: var(--zimt); pointer-events: none; white-space: nowrap; }
+.gate h2 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 21px; }
+.gate p { margin: 0; color: var(--muted); max-width: 26em; }
+.btn {
+  min-height: 50px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+}
+.btn.soft { background: var(--surface); color: var(--ink); border: 1px solid var(--line); font-weight: 500; font-size: 15px; min-height: 44px; padding: 8px 18px; }
+.bites-left { font-family: var(--f-mono); font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+
+/* Ansicht eines Tages */
+.viewing {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  padding: 10px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line);
+  font-size: 15px;
+}
+.day { display: flex; flex-direction: column; gap: 22px; }
+.day-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.day-head h2 { margin: 0; font-family: var(--f-display); font-weight: 700; font-size: 22px; letter-spacing: -.01em; }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+
+.thought { display: flex; flex-direction: column; gap: 12px; padding-block: 16px 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.thought-text { margin: 0; font-style: italic; font-size: clamp(21px, 5.6vw, 24px); line-height: 1.4; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 40px;
+  font-family: var(--f-display); font-weight: 500; font-size: 15px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; cursor: pointer; text-align: left;
+}
+.pill[aria-expanded="true"] { border-color: var(--ink); }
+.proof { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--line); font-size: 15px; }
+.proof .hint { color: var(--muted); font-size: 14px; margin: 0; }
+
+.src { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.src a {
+  display: inline-block;
+  font-family: var(--f-mono); font-size: 12.5px; line-height: 1.45;
+  color: var(--muted); text-decoration: underline; text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+  padding-block: 2px;
+}
+
+/* Zum Schmunzeln */
+.corner { background: var(--zimt-wash); border-radius: 18px; padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+.corner-head { display: flex; align-items: center; gap: 14px; }
+.corner-head svg { width: 84px; height: 84px; flex: none; }
+.corner-head .t { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.corner-head .name { font-family: var(--f-display); font-weight: 700; font-size: 19px; color: var(--zimt); }
+.stamp {
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+  border: 1.5px solid var(--zimt); color: var(--zimt); border-radius: 6px; padding: 2px 7px; transform: rotate(-3deg);
+}
+.corner .poem { margin: 0; white-space: pre-line; font-style: italic; font-size: 18px; line-height: 1.55; }
+
+/* Häppchen */
+.bites { display: flex; flex-direction: column; gap: 10px; }
+.bite { background: var(--surface); border-radius: 14px; box-shadow: var(--shadow); border-left: 5px solid var(--c); overflow: hidden; }
+.bite > button {
+  width: 100%; min-height: 60px; background: none; border: 0; cursor: pointer; text-align: left;
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+}
+.bite .cat { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--c); display: block; }
+.bite .ttl { font-family: var(--f-display); font-weight: 700; font-size: 18px; line-height: 1.25; display: block; }
+.bite .lbl { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.bite .state { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid var(--line); color: var(--muted); font-size: 15px; transition: transform .25s; }
+.bite.seen .state { background: var(--c); border-color: var(--c); color: var(--surface); }
+.bite[data-open="true"] .state { transform: rotate(45deg); }
+.bite .body { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+.bite .body p { margin: 0; }
+.rel { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.rel .label { margin-right: 4px; }
+.rel button { min-height: 36px; font-size: 14px; padding: 4px 12px; }
+
+.note { margin: 0; color: var(--muted); font-size: 15.5px; text-align: center; text-wrap: balance; }
+
+/* Alle Zimtschnecken */
+details.fold { border-top: 1px solid var(--line); padding-top: 14px; }
+details.fold summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; }
+details.fold summary::-webkit-details-marker { display: none; }
+details.fold summary .h { font-family: var(--f-display); font-weight: 700; font-size: 19px; }
+details.fold summary .chev { transition: transform .2s; color: var(--muted); }
+details.fold[open] summary .chev { transform: rotate(90deg); }
+.doors { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px 8px; margin-top: 14px; }
+.door {
+  border: 0; background: none; padding: 0; cursor: pointer; min-width: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+}
+.door .bun {
+  position: relative; width: 100%; max-width: 54px; aspect-ratio: 1 / 1; border-radius: 50%;
+  background: repeating-radial-gradient(circle at 52% 48%, var(--bun) 0 4px, var(--bun-dark) 4px 6px);
+  box-shadow: inset 0 0 0 2px var(--bun-dark);
+  display: grid; place-items: center;
+}
+.door .bun b {
+  font-family: var(--f-display); font-weight: 800; font-size: 14px; line-height: 1;
+  background: var(--plate); color: var(--ink); border-radius: 999px; padding: 3px 6px; min-width: 24px; text-align: center;
+}
+.door small { font-family: var(--f-mono); font-size: 9.5px; color: var(--muted); }
+.door.eaten .bun::after {
+  content: ""; position: absolute; top: -5px; right: -5px; width: 40%; height: 40%; border-radius: 50%; background: var(--bg);
+}
+.door.today .bun { box-shadow: inset 0 0 0 2px var(--bun-dark), 0 0 0 3px var(--zimt); }
+.door.current .bun { box-shadow: inset 0 0 0 2px var(--bun-dark), 0 0 0 3px var(--ink); }
+.door.locked { cursor: default; }
+.door.locked .bun { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line); border: 1.5px dashed var(--line); }
+.door.locked .bun b { background: transparent; color: var(--muted); }
+.fold .sub { margin: 12px 0 0; color: var(--muted); font-size: 14.5px; }
+
+footer { color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); padding-top: 14px; }
+footer p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bite .state, details.fold summary .chev, .oven .roll { transition: none; }
+  .steam path, .oven.wobble .roll { animation: none; }
+}
+@media (max-width: 380px) {
+  .doors { grid-template-columns: repeat(5, 1fr); }
+  .corner-head svg { width: 70px; height: 70px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Frisch aus dem Ofen</div>
+    <h1>Zimtschnecken-<span class="zimt">Fabrik</span></h1>
+    <div class="meta" id="meta"></div>
+  </header>
+
+  <section class="gate" id="pre" hidden>
+    <div class="oven" id="pre-oven"></div>
+    <h2>Noch im Ofen</h2>
+    <p id="pre-text"></p>
+  </section>
+
+  <section class="gate" id="gate" hidden>
+    <div class="oven" id="oven" role="button" tabindex="0" aria-label="Zimtschnecke vernaschen">
+      <span class="no">Nr. <span id="gate-num"></span></span>
+    </div>
+    <h2 id="gate-title"></h2>
+    <button class="btn" id="eat" type="button">Vernaschen</button>
+    <span class="bites-left" id="bites-left" aria-live="polite">3 Bissen</span>
+    <p>Darin: ein positiver Gedanke, etwas zum Schmunzeln und vier kleine Wissenshäppchen. Ganz ohne Eile.</p>
+  </section>
+
+  <main class="day" id="day" hidden>
+    <div class="viewing" id="viewing" hidden>
+      <span id="viewing-text"></span>
+      <button class="btn soft" id="back-today" type="button">Zurück zu heute</button>
+    </div>
+
+    <div class="day-head">
+      <h2 id="day-title"></h2>
+      <span class="meta" id="day-date"></span>
+    </div>
+
+    <section class="thought" aria-labelledby="t-label">
+      <span class="label" id="t-label">Positiver Gedanke von heute</span>
+      <p class="thought-text" id="thought"></p>
+      <div class="actions">
+        <button class="pill" id="proof-btn" type="button" aria-expanded="false" aria-controls="proof">Beleg</button>
+      </div>
+      <div class="proof" id="proof" hidden>
+        <ul class="src" id="proof-src"></ul>
+        <p class="hint" id="proof-hint"></p>
+        <div><button class="pill" id="proof-open" type="button" hidden>Ganzes Häppchen ansehen</button></div>
+      </div>
+    </section>
+
+    <section class="stack" aria-labelledby="c-label">
+      <span class="label" id="c-label">Zum Schmunzeln</span>
+      <div class="corner">
+        <div class="corner-head">
+          <span id="mascot"></span>
+          <div class="t">
+            <span class="name">Zimt &amp; Blüten</span>
+            <span class="stamp">Frei erfunden</span>
+          </div>
+        </div>
+        <p class="poem" id="corner-text"></p>
+      </div>
+    </section>
+
+    <section class="stack" aria-labelledby="b-label">
+      <span class="label" id="b-label">Vier Wissenshäppchen</span>
+      <div class="bites" id="bites"></div>
+    </section>
+
+    <p class="note" id="note"></p>
+  </main>
+
+  <details class="fold" id="fold">
+    <summary><span class="h">Alle Zimtschnecken</span><span class="chev" aria-hidden="true">›</span></summary>
+    <div class="doors" id="doors"></div>
+    <p class="sub" id="progress"></p>
+  </details>
+
+  <footer>
+    <p>Alle Wissenshäppchen und positiven Gedanken sind mit Quellen belegt. Alles unter „Zum Schmunzeln“ ist frei erfunden und nur zum Lächeln da.</p>
+    <p>Tipp fürs iPhone: In Safari auf Teilen tippen und „Zum Home-Bildschirm“ wählen. Dann ist die Fabrik wie eine kleine App immer griffbereit.</p>
+  </footer>
+</div>
+
+<script>
+'use strict';
+
+const CAT = {
+  psyche: { name: 'Psychologie', c: 'var(--psyche)' },
+  phys: { name: 'Physiologie', c: 'var(--phys)' },
+  hirn: { name: 'Gehirn & Nerven', c: 'var(--hirn)' },
+  allg: { name: 'Allgemeinwissen', c: 'var(--allg)' }
+};
+const ORDER = ['psyche', 'phys', 'hirn', 'allg'];
+const PUB = n => 'https://pubmed.ncbi.nlm.nih.gov/' + n + '/';
+const WP = t => 'https://de.wikipedia.org/wiki/' + t;
+
+/* ================= Wissenshäppchen ================= */
+const FACTS = [
+  /* ---------- Psychologie ---------- */
+  { id: 'p1', cat: 'psyche', title: 'Der Mere-Exposure-Effekt',
+    text: 'Wir finden Dinge oft sympathischer, je öfter wir ihnen begegnen, selbst Fantasiewörter oder Schriftzeichen, die wir gar nicht lesen können. Robert Zajonc zeigte das 1968 in einer Reihe von Experimenten.',
+    src: [['Zajonc 1968 · Journal of Personality and Social Psychology (DOI)', 'https://doi.org/10.1037/h0025848']],
+    rel: ['p8', 'p6'] },
+  { id: 'p2', cat: 'psyche', title: 'Der Pratfall-Effekt',
+    text: 'Ein kleines Missgeschick kann kompetente Menschen sympathischer machen. In einem Experiment von 1966 wirkte ein sehr guter Quizkandidat netter, nachdem er sich Kaffee übergekippt hatte. Bei einem mittelmäßigen Kandidaten half der Kaffeefleck dagegen nicht.',
+    src: [['Aronson, Willerman & Floyd 1966 · Psychonomic Science', 'https://link.springer.com/article/10.3758/BF03342263']],
+    rel: ['p3', 'p33'] },
+  { id: 'p3', cat: 'psyche', title: 'Der Spotlight-Effekt',
+    text: 'Wir überschätzen, wie sehr andere auf uns achten. Studierende mussten mit einem peinlichen Barry-Manilow-Shirt in einen Raum gehen. Sie schätzten, dass etwa doppelt so viele Leute es bemerkt hatten, wie es tatsächlich der Fall war.',
+    src: [['Gilovich, Medvec & Savitsky 2000 · Journal of Personality and Social Psychology (PubMed)', PUB(10707330)]],
+    rel: ['p2', 'p32'] },
+  { id: 'p4', cat: 'psyche', title: 'Die Peak-End-Regel',
+    text: 'Im Rückblick zählen vor allem der intensivste Moment und das Ende eines Erlebnisses, weniger seine Dauer. Versuchspersonen hielten eine Hand in kaltes Wasser. Die meisten wollten lieber den längeren Durchgang wiederholen, an dessen Ende das Wasser etwas wärmer wurde.',
+    src: [['Kahneman et al. 1993 · Psychological Science (DOI)', 'https://doi.org/10.1111/j.1467-9280.1993.tb00589.x']],
+    rel: ['p5', 'h25'] },
+  { id: 'p5', cat: 'psyche', title: 'Der Türschwellen-Effekt',
+    text: 'Wer durch eine Tür geht, vergisst eher, was er gerade vorhatte. Das Gehirn behandelt den Raumwechsel offenbar wie das Ende eines Kapitels und legt das Vorherige ab. Daher das bekannte „Was wollte ich eigentlich hier?“.',
+    src: [['Radvansky, Krawietz & Tamplin 2011 · Quarterly Journal of Experimental Psychology', 'https://journals.sagepub.com/doi/abs/10.1080/17470218.2011.571267']],
+    rel: ['p4', 'h38'] },
+  { id: 'p6', cat: 'psyche', title: 'Der IKEA-Effekt',
+    text: 'Was wir selbst gebaut haben, halten wir für wertvoller, auch wenn es ein bisschen schief geworden ist. Teilnehmende boten für ihre selbst gefalteten Origami-Figuren deutlich mehr Geld als Unbeteiligte für dieselben Figuren.',
+    src: [['Norton, Mochon & Ariely 2012 · Journal of Consumer Psychology', 'https://myscp.onlinelibrary.wiley.com/doi/abs/10.1016/j.jcps.2011.08.002']],
+    rel: ['p1', 'p10'] },
+  { id: 'p7', cat: 'psyche', title: 'Der Stift im Mund',
+    text: 'Eine berühmte Studie von 1988: Wer einen Stift so zwischen die Zähne nimmt, dass er lächeln muss, fand Cartoons lustiger. 2016 versuchten 17 Labore, das zu wiederholen, und fanden keinen Effekt. Eine internationale Großstudie kam 2022 zu dem Schluss, dass bewusstes Lächeln die Stimmung ein kleines bisschen heben kann. Beim Stift-Trick allein ist der Effekt weiter umstritten.',
+    src: [['Strack, Martin & Stepper 1988 · PubMed', PUB(3379579)],
+          ['Wagenmakers et al. 2016 · Replikation mit 17 Laboren (PubMed)', PUB(27784749)],
+          ['Coles et al. 2022 · Nature Human Behaviour', 'https://www.nature.com/articles/s41562-022-01458-9']],
+    rel: ['p9'] },
+  { id: 'p8', cat: 'psyche', title: 'Plötzlich ist es überall',
+    text: 'Kaum hat man etwas Neues gelernt, begegnet es einem auf einmal ständig. Dahinter steckt selektive Aufmerksamkeit. Der Linguist Arnold Zwicky gab dem Phänomen 2005 den Namen Frequenzillusion, inzwischen steht der Begriff im Oxford English Dictionary.',
+    src: [['Language Log · „Frequency illusion“ im Oxford English Dictionary', 'https://languagelog.ldc.upenn.edu/nll/?p=42180']],
+    rel: ['p1', 'p3'] },
+  { id: 'p9', cat: 'psyche', title: 'Lachen steckt an',
+    text: 'Der Neurowissenschaftler Robert Provine zeigte, dass viele Lacher nur entstehen, weil jemand anderes lacht. In Gesellschaft lachen wir viel häufiger als allein. Und am leichtesten steckt uns das Lachen von Menschen an, die wir kennen.',
+    src: [['Übersichtsarbeit zu Robert Provines Lachforschung · PMC', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC9489296']],
+    rel: ['p7', 'p23', 'h32'] },
+  { id: 'p10', cat: 'psyche', title: 'Die Macht kleiner Fortschritte',
+    text: 'Teresa Amabile und Steven Kramer werteten Arbeitstagebücher von Berufstätigen aus. Nichts trug so stark zu guter Stimmung und Motivation bei wie das Gefühl, bei einer sinnvollen Aufgabe voranzukommen, auch in ganz kleinen Schritten.',
+    src: [['Amabile & Kramer 2011 · Harvard Business Review', 'https://hbr.org/2011/05/the-power-of-small-wins']],
+    rel: ['p6', 'p16', 'p27'] },
+  { id: 'p11', cat: 'psyche', title: 'Neugier macht schlauer',
+    text: 'Wenn wir gespannt auf eine Antwort sind, lernen wir besser, und zwar nicht nur die Antwort. Neugierige Teilnehmende merkten sich sogar Gesichter besser, die zufällig während des Wartens eingeblendet wurden. Beteiligt sind der Hippocampus und das Belohnungssystem.',
+    src: [['Gruber, Gelman & Ranganath 2014 · Neuron (PubMed)', PUB(25284006)]],
+    rel: ['h2', 'p25', 'h15'] },
+  { id: 'p12', cat: 'psyche', title: 'Machen Romane empathischer?',
+    text: '2013 berichtete eine Studie in Science, schon ein kurzer literarischer Text verbessere das Gespür für die Gedanken anderer. Ein großer Wiederholungsversuch konnte das 2016 nicht bestätigen. Ob Lesen langfristig empathischer macht, wird weiter erforscht.',
+    src: [['Kidd & Castano 2013 · Science', 'https://www.science.org/doi/10.1126/science.1239918'],
+          ['Panero et al. 2016 · Replikationsversuch (PubMed)', PUB(27642659)]],
+    rel: ['p3', 'p11'] },
+  { id: 'p13', cat: 'psyche', title: 'Lieber aufgeregt als ruhig',
+    text: 'Vor Auftritten heißt es oft: Bleib ruhig. Die Psychologin Alison Wood Brooks testete das Gegenteil. Wer vor Karaoke, einer Rede oder einer Matheaufgabe laut sagte „Ich bin aufgeregt“, schnitt besser ab als wer versuchte, sich zu beruhigen. Aufregung lässt sich leichter in Vorfreude umdeuten als in Gelassenheit.',
+    src: [['Brooks 2014 · Journal of Experimental Psychology: General (PubMed)', PUB(24364682)]],
+    rel: ['p14'] },
+  { id: 'p14', cat: 'psyche', title: 'Herzklopfen als Energie',
+    text: 'Versuchspersonen erfuhren vor einer stressigen Prüfungssituation, dass Herzklopfen und schneller Atem den Körper leistungsfähiger machen. Ihr Herz-Kreislauf-System reagierte danach günstiger, und ihre Aufmerksamkeit blieb weniger an Bedrohlichem hängen.',
+    src: [['Jamieson et al. 2012 · Journal of Experimental Psychology: General (PubMed)', PUB(21942377)]],
+    rel: ['p13'] },
+  { id: 'p15', cat: 'psyche', title: 'Dankbarkeit wirkt',
+    text: 'Teilnehmende notierten zehn Wochen lang jede Woche ein paar Dinge, für die sie dankbar waren. Verglichen mit Gruppen, die Ärgernisse oder neutrale Ereignisse aufschrieben, blickten sie optimistischer auf ihr Leben, bewegten sich mehr und berichteten weniger körperliche Beschwerden.',
+    src: [['Emmons & McCullough 2003 · Journal of Personality and Social Psychology (PubMed)', PUB(12585811)]],
+    rel: ['p16', 'p35'] },
+  { id: 'p16', cat: 'psyche', title: 'Drei gute Dinge',
+    text: 'Eine Woche lang jeden Abend drei Dinge aufschreiben, die gut gelaufen sind, und warum. In einer Studie um Martin Seligman hob diese einfache Übung das Glücksempfinden und senkte depressive Symptome, und der Effekt hielt bis zu sechs Monate an.',
+    src: [['Seligman et al. 2005 · American Psychologist (PubMed)', PUB(16045394)]],
+    rel: ['p15', 'p10'] },
+  { id: 'p17', cat: 'psyche', title: 'Geben macht glücklich',
+    text: 'Teilnehmende bekamen morgens 5 oder 20 Dollar. Wer das Geld bis zum Abend für andere ausgab, war danach glücklicher als wer es für sich selbst ausgab. Wie hoch der Betrag war, spielte keine Rolle.',
+    src: [['Dunn, Aknin & Norton 2008 · Science (PubMed)', PUB(18356530)]],
+    rel: ['p30', 'p21'] },
+  { id: 'p18', cat: 'psyche', title: 'Wir gewöhnen uns an fast alles',
+    text: 'Eine klassische Studie verglich Lottogewinner mit Unfallopfern und einer Kontrollgruppe. Die Gewinner waren nach einiger Zeit kaum glücklicher als andere. Und auch Menschen nach schweren Unfällen bewerteten ihr Glück weniger niedrig, als viele erwartet hätten.',
+    src: [['Brickman, Coates & Janoff-Bulman 1978 · Journal of Personality and Social Psychology (PubMed)', PUB(690806)]],
+    rel: ['p4', 'p34'] },
+  { id: 'p19', cat: 'psyche', title: 'Freundlich zu sich selbst',
+    text: 'Studierende schnitten bei einem schweren Test schlecht ab. Wer danach angeleitet wurde, verständnisvoll mit sich umzugehen, lernte anschließend länger für einen zweiten Versuch als die, die nur ihr Selbstwertgefühl aufpolierten. Selbstmitgefühl macht also nicht bequem, sondern motivierter.',
+    src: [['Breines & Chen 2012 · Personality and Social Psychology Bulletin (PubMed)', PUB(22645164)]],
+    rel: ['p2', 'p22', 'p33'] },
+  { id: 'p20', cat: 'psyche', title: 'Ideen kommen beim Gehen',
+    text: 'In Experimenten an der Stanford University hatten Teilnehmende beim Gehen deutlich mehr kreative Einfälle als im Sitzen, im Schnitt rund 60 Prozent mehr. Der Effekt hielt sogar kurz nach dem Spaziergang noch an.',
+    src: [['Oppezzo & Schwartz 2014 · Journal of Experimental Psychology: Learning, Memory, and Cognition (PubMed)', PUB(24749966)]],
+    rel: ['h16', 'k16'] },
+  { id: 'p21', cat: 'psyche', title: 'Beziehungen halten gesund',
+    text: 'Eine Meta-Analyse mit über 300.000 Menschen fand: Wer starke soziale Beziehungen hatte, hatte im Beobachtungszeitraum eine um rund 50 Prozent höhere Überlebenswahrscheinlichkeit. Der Effekt ist vergleichbar mit dem eines Rauchstopps.',
+    src: [['Holt-Lunstad, Smith & Layton 2010 · PLoS Medicine (DOI)', 'https://doi.org/10.1371/journal.pmed.1000316']],
+    rel: ['p17', 'p24', 'p31'] },
+  { id: 'p22', cat: 'psyche', title: 'Schreiben tut gut',
+    text: 'James Pennebaker ließ Studierende an vier Tagen je 15 Minuten über belastende Erlebnisse schreiben. In den Monaten danach gingen sie seltener zum Gesundheitsdienst der Uni als die Vergleichsgruppe, die über Belangloses schrieb.',
+    src: [['Pennebaker & Beall 1986 · Journal of Abnormal Psychology (PubMed)', PUB(3745650)]],
+    rel: ['p19', 'p35'] },
+  { id: 'p23', cat: 'psyche', title: 'Lachen gegen Schmerz',
+    text: 'Wer gemeinsam mit anderen über eine Komödie lachte, hielt danach mehr Schmerz aus, zum Beispiel eine eiskalte Manschette um den Arm. Die Forschenden vermuten körpereigene Endorphine dahinter.',
+    src: [['Dunbar et al. 2012 · Proceedings of the Royal Society B', 'https://royalsocietypublishing.org/doi/abs/10.1098/rspb.2011.1373']],
+    rel: ['p9', 'h26'] },
+  { id: 'p24', cat: 'psyche', title: 'Umarmungen als Schutzschild',
+    text: 'Forschende befragten Erwachsene zwei Wochen lang zu Konflikten und Umarmungen und setzten sie dann einem Erkältungsvirus aus. Wer sich gut unterstützt fühlte und öfter umarmt wurde, war in Stressphasen besser geschützt und hatte mildere Symptome.',
+    src: [['Cohen et al. 2015 · Psychological Science (PubMed)', PUB(25526910)]],
+    rel: ['p21', 'h14'] },
+  { id: 'p25', cat: 'psyche', title: 'Abfragen schlägt Nochmal-Lesen',
+    text: 'Studierende lasen einen Sachtext. Die einen lasen ihn danach immer wieder, die anderen schrieben aus dem Kopf auf, was hängen geblieben war. Nach fünf Minuten lagen die Vielleser knapp vorn. Nach einer Woche wussten die Abfrager deutlich mehr: 61 gegenüber 40 Prozent.',
+    src: [['Roediger & Karpicke 2006 · Psychological Science (PubMed)', PUB(16507066)],
+          ['Washington University · Pressemitteilung', 'https://source.washu.edu/2006/03/repeated-testtaking-better-for-retention-than-repeated-studying-research-shows/']],
+    rel: ['p26', 'p11'] },
+  { id: 'p26', cat: 'psyche', title: 'Lieber öfter, dafür kürzer',
+    text: 'Eine große Auswertung von 317 Experimenten zeigt: Wer Lernstoff auf mehrere Sitzungen mit Pausen verteilt, behält ihn länger als beim Pauken am Stück. Und je länger man sich etwas merken will, desto größer dürfen die Abstände zwischen den Wiederholungen sein.',
+    src: [['Cepeda et al. 2006 · Psychological Bulletin (PubMed)', PUB(16719566)],
+          ['Cepeda et al. 2006 · Zusammenfassung (York University)', 'https://www.yorku.ca/ncepeda/publications/CPVWR2006.html']],
+    rel: ['p25', 'h25'] },
+  { id: 'p27', cat: 'psyche', title: 'Wenn-dann-Pläne',
+    text: 'Statt „Ich will mehr lesen“ lieber „Wenn ich abends im Bett liege, lese ich zehn Seiten“. Solche Wenn-dann-Pläne heißen Durchführungsintentionen. Eine Meta-Analyse über 94 Studien fand, dass sie die Chance, ein Ziel zu erreichen, mittel bis stark erhöhen.',
+    src: [['Gollwitzer & Sheeran 2006 · Advances in Experimental Social Psychology (Universität Konstanz)', 'https://kops.uni-konstanz.de/entities/publication/2e749bfb-8533-437c-8203-7e788c910c5f']],
+    rel: ['p28', 'p10'] },
+  { id: 'p28', cat: 'psyche', title: 'Der Neuanfang-Effekt',
+    text: 'Forschende werteten Google-Suchen nach „Diät“, Besuche im Fitnessstudio einer Universität und Zielverträge auf einer Online-Plattform aus. Gute Vorsätze starteten besonders oft an Wendepunkten im Kalender: zum Wochen-, Monats- oder Jahresanfang, nach Geburtstagen oder Feiertagen. Solche Tage fühlen sich an wie ein frisches Kapitel.',
+    src: [['Dai, Milkman & Riis 2014 · Management Science', 'https://pubsonline.informs.org/doi/10.1287/mnsc.2014.1901'],
+          ['Knowledge at Wharton · Zusammenfassung', 'https://knowledge.wharton.upenn.edu/article/need-fresh-start-heres-begin/']],
+    rel: ['p27'] },
+  { id: 'p29', cat: 'psyche', title: 'Ehrfurcht macht hilfsbereit',
+    text: 'Teilnehmende schauten eine Minute lang in einen Hain hoher Eukalyptusbäume, andere genauso lange auf ein großes Gebäude. Danach ließ jemand aus dem Forschungsteam „aus Versehen“ Kugelschreiber fallen. Wer zu den Bäumen hinaufgeschaut hatte, half mehr beim Aufsammeln. Ehrfurcht lässt das eigene Ich kleiner wirken und macht offenbar großzügiger.',
+    src: [['Piff et al. 2015 · Journal of Personality and Social Psychology (PubMed)', PUB(25984788)],
+          ['Greater Good Magazine · UC Berkeley', 'https://greatergood.berkeley.edu/article/item/how_awe_makes_us_generous']],
+    rel: ['h16', 'p17'] },
+  { id: 'p30', cat: 'psyche', title: 'Kleine Freundlichkeit, große Wirkung',
+    text: 'In einem Park in Chicago konnten Teilnehmende einer fremden Person eine heiße Schokolade schenken. Die Gebenden schätzten die Freude der Beschenkten auf einer Skala im Schnitt auf 2,7, tatsächlich lag sie bei 3,5. In mehreren Studien unterschätzten Menschen durchweg, wie viel eine kleine Freundlichkeit anderen bedeutet.',
+    src: [['Kumar & Epley 2022 · Journal of Experimental Psychology: General (UT Austin)', 'https://news.mccombs.utexas.edu/research/a-little-good-goes-farther-than-you-think/']],
+    rel: ['p17', 'p35'] },
+  { id: 'p31', cat: 'psyche', title: 'Sprich mit Fremden',
+    text: 'Pendlerinnen und Pendler in Chicago sollten in Zug oder Bus ein Gespräch mit einer fremden Person beginnen, für sich bleiben oder sich wie immer verhalten. Vorher erwarteten die meisten, dass Alleinsein angenehmer ist. Tatsächlich war die Fahrt mit Gespräch am schönsten.',
+    src: [['Epley & Schroeder 2014 · Journal of Experimental Psychology: General (Chicago Booth)', 'https://www.chicagobooth.edu/media-relations-and-communications/press-releases/mom-was-wrong-you-should-talk-to-strangers'],
+          ['Studie als PDF · UC Berkeley Haas', 'https://faculty.haas.berkeley.edu/jschroeder/Publications/Epley%26Schroeder2014.pdf']],
+    rel: ['p32', 'p21'] },
+  { id: 'p32', cat: 'psyche', title: 'Du wirst mehr gemocht, als du denkst',
+    text: 'Fremde unterhielten sich fünf Minuten und schätzten danach ein, wie sehr sie ihr Gegenüber mögen und wie sehr das Gegenüber sie mag. Die meisten mochten den anderen mehr, als sie selbst glaubten, gemocht zu werden. Bei Mitbewohnern im Studium hielt diese Sympathielücke sogar mehrere Monate an.',
+    src: [['Boothby et al. 2018 · Psychological Science (DOI)', 'https://doi.org/10.1177/0956797618783714'],
+          ['ScienceDaily · Zusammenfassung', 'https://sciencedaily.com/releases/2018/09/180910160629.htm']],
+    rel: ['p3', 'p31'] },
+  { id: 'p33', cat: 'psyche', title: 'Der Beautiful-Mess-Effekt',
+    text: 'Liebe gestehen, einen Fehler zugeben, vor anderen improvisieren: In sieben Studien bewerteten Menschen solche Momente der Verletzlichkeit bei sich selbst deutlich strenger als bei anderen. Was sich von innen nach Schwäche anfühlt, wirkt von außen oft wie Mut.',
+    src: [['Bruk, Scholl & Bless 2018 · Journal of Personality and Social Psychology (Universität Mannheim)', 'https://www.mzes.uni-mannheim.de/en/publications/details/beautiful-mess-effect-self-other-differences-in-evaluation-of-showing-vulnerability'],
+          ['BPS Research Digest · Zusammenfassung', 'https://bps.org.uk/research-digest/beautiful-mess-effect']],
+    rel: ['p2', 'p19'] },
+  { id: 'p34', cat: 'psyche', title: 'Erlebnisse statt Dinge',
+    text: 'In einer telefonischen Befragung von 1.263 US-Amerikanerinnen und -Amerikanern sollten Menschen an einen Kauf für ein Erlebnis und an einen für einen Gegenstand denken. 57 Prozent sagten, das Erlebnis habe sie glücklicher gemacht, nur 34 Prozent nannten den Gegenstand.',
+    src: [['Van Boven & Gilovich 2003 · Journal of Personality and Social Psychology (DOI)', 'https://doi.org/10.1037/0022-3514.85.6.1193']],
+    rel: ['p17', 'p4'] },
+  { id: 'p35', cat: 'psyche', title: 'Dankesbriefe wirken stärker als gedacht',
+    text: 'Teilnehmende schrieben einen Dankesbrief an jemanden, der ihnen viel bedeutet. Vorher schätzten sie, wie überrascht, froh und verlegen die Empfänger sein würden. Sie unterschätzten Überraschung und Freude und überschätzten, wie unangenehm es sein würde. Den Empfängern war vor allem die Wärme wichtig, nicht die perfekte Formulierung.',
+    src: [['Kumar & Epley 2018 · Psychological Science (University of Chicago)', 'https://news.uchicago.edu/story/people-underestimate-value-sending-letters-appreciation']],
+    rel: ['p15', 'p30'] },
+  { id: 'p36', cat: 'psyche', title: 'Gedanken auf Wanderschaft',
+    text: 'Per iPhone-App wurden 2.250 Menschen zu zufälligen Zeitpunkten gefragt, was sie gerade tun, woran sie denken und wie es ihnen geht. In fast der Hälfte der Wachzeit, 46,9 Prozent, waren die Gedanken woanders. Und mit wandernden Gedanken waren die Leute im Schnitt weniger glücklich.',
+    src: [['Killingsworth & Gilbert 2010 · Science', 'https://www.science.org/doi/10.1126/science.1192439'],
+          ['Harvard Gazette · Zusammenfassung', 'https://news.harvard.edu/gazette/story/2010/11/wandering-mind-not-a-happy-mind/']],
+    rel: ['h16', 'p20'] },
+
+  /* ---------- Physiologie ---------- */
+  { id: 'k1', cat: 'phys', title: 'Muskeln sprechen mit dem Körper',
+    text: 'Arbeitende Muskeln schütten Botenstoffe aus, sogenannte Myokine, zum Beispiel Interleukin-6. Sie wirken wie Hormone auf andere Organe. Muskeln sind also nicht nur Motor, sondern auch eine Art Drüse.',
+    src: [['Pedersen & Febbraio 2008 · Physiological Reviews (PubMed)', PUB(18923185)]],
+    rel: ['h13'] },
+  { id: 'k2', cat: 'phys', title: 'Muskelkater ist kein Laktat',
+    text: 'Muskelkater entsteht nicht durch Milchsäure, diese Erklärung gilt als widerlegt. Heute geht man von winzigen Rissen im Muskelgewebe aus, sogenannten Mikrotraumata. Deshalb setzt der Schmerz auch erst Stunden nach dem Training ein, und meist klingt er innerhalb von vier Tagen wieder ab.',
+    src: [['Wikipedia · Muskelkater (mit Einzelnachweisen)', WP('Muskelkater')]],
+    rel: ['k3', 'k20'] },
+  { id: 'k3', cat: 'phys', title: 'Laktat ist Treibstoff',
+    text: 'Laktat galt lange als Abfallprodukt der Muskeln. Heute weiß man: Es wird zwischen Zellen und Organen hin- und hertransportiert und von Herz, Gehirn und anderen Muskeln als Energiequelle genutzt.',
+    src: [['Brooks 2018 · Cell Metabolism (PubMed)', PUB(29617642)]],
+    rel: ['k2', 'h1'] },
+  { id: 'k4', cat: 'phys', title: 'Kraft beginnt im Kopf',
+    text: 'In den ersten Wochen eines Krafttrainings legt die Kraft deutlich zu, bevor die Muskeln sichtbar wachsen. Ein klassischer Befund zeigt: Anfangs lernt vor allem das Nervensystem, mehr Muskelfasern gleichzeitig anzusteuern. Erst später übernimmt das Muskelwachstum.',
+    src: [['Moritani & deVries 1979 · American Journal of Physical Medicine (PubMed)', PUB(453338)]],
+    rel: ['k5', 'k6', 'h11'] },
+  { id: 'k5', cat: 'phys', title: 'Die andere Seite trainiert mit',
+    text: 'Wer nur ein Bein oder einen Arm trainiert, wird auch auf der untrainierten Seite stärker. Eine Meta-Analyse fand dort im Schnitt einen Kraftzuwachs von rund acht Prozent. Ein Grund, warum das Training der gesunden Seite in der Reha sinnvoll sein kann.',
+    src: [['Munn, Herbert & Gandevia 2004 · Journal of Applied Physiology (PubMed)', PUB(15075311)]],
+    rel: ['k4', 'k6', 'h35'] },
+  { id: 'k6', cat: 'phys', title: 'Training in Gedanken',
+    text: 'Teilnehmende stellten sich vier Wochen lang nur vor, einen Finger kräftig anzuspannen. Ihre Kraft stieg um 22 Prozent. Die Gruppe, die wirklich trainierte, kam auf 30 Prozent.',
+    src: [['Yue & Cole 1992 · Journal of Neurophysiology (PubMed)', PUB(1597701)]],
+    rel: ['k4', 'k5', 'h18'] },
+  { id: 'k7', cat: 'phys', title: 'Nie zu alt für Kraft',
+    text: 'Zehn sehr gebrechliche Menschen um die 90 machten acht Wochen lang intensives Krafttraining für die Beine. Ihre Kraft stieg im Schnitt um 174 Prozent, und zwei von ihnen brauchten danach keinen Gehstock mehr.',
+    src: [['Fiatarone et al. 1990 · JAMA (PubMed)', PUB(2342214)]],
+    rel: ['k8', 'k23'] },
+  { id: 'k8', cat: 'phys', title: 'Muskeln haben ein Gedächtnis',
+    text: 'Bei Mäusen bildeten trainierte Muskeln zusätzliche Zellkerne. Als die Muskeln danach wieder schrumpften, blieben diese Zellkerne erhalten. Das könnte erklären, warum der Wiedereinstieg nach einer Pause oft schneller geht.',
+    src: [['Bruusgaard et al. 2010 · PNAS (DOI)', 'https://doi.org/10.1073/pnas.0913935107']],
+    rel: ['k7'] },
+  { id: 'k9', cat: 'phys', title: 'Die 10.000-Schritte-Legende',
+    text: 'Die Zahl 10.000 stammt aus der Werbung für einen japanischen Schrittzähler aus den 1960er-Jahren. Eine große Meta-Analyse zeigt: Mehr Schritte senken das Sterberisiko, der Nutzen flacht bei über 60-Jährigen ab etwa 6.000 bis 8.000 Schritten ab, bei Jüngeren ab etwa 8.000 bis 10.000.',
+    src: [['Tudor-Locke & Bassett 2004 · Sports Medicine (PubMed)', PUB(14715035)],
+          ['Paluch et al. 2022 · Lancet Public Health (PubMed)', PUB(35247352)]],
+    rel: ['h13', 'k16'] },
+  { id: 'k10', cat: 'phys', title: 'Knochen brauchen Belastung',
+    text: 'Im Weltall fehlt die Schwerkraft, und das merken die Knochen schnell. Astronautinnen und Astronauten verlieren auf Langzeitmissionen etwa ein bis anderthalb Prozent Knochendichte pro Monat, vor allem an Hüfte und Wirbelsäule.',
+    src: [['LeBlanc et al. 2000 · Journal of Musculoskeletal and Neuronal Interactions (PubMed)', PUB(15758512)]],
+    rel: ['h8', 'k30'] },
+  { id: 'k11', cat: 'phys', title: 'Hunderttausend Schläge',
+    text: 'Bei einem Ruhepuls von etwa 70 schlägt das Herz rund 100.000 Mal am Tag. Über ein ganzes Leben kommen so mehr als zwei Milliarden Herzschläge zusammen.',
+    src: [['Wikipedia · Herz (mit Einzelnachweisen)', WP('Herz')]],
+    rel: ['k14', 'a28'] },
+  { id: 'h8', cat: 'phys', title: 'Morgens größer',
+    text: 'Über den Tag drücken Schwerkraft und Belastung Flüssigkeit aus den Bandscheiben. Bis zum Abend verlieren wir so rund ein Prozent unserer Körpergröße, nachts holen wir es uns zurück.',
+    src: [['Tyrrell, Reilly & Troup 1985 · Spine', 'https://journals.lww.com/spinejournal/abstract/1985/03000/circadian_variation_in_stature_and_the_effects_of.11.aspx'],
+          ['Studie zur Wirbelsäulenstauchung beim Gehen, mit Literaturüberblick · PMC', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3508204/']],
+    rel: ['k25', 'a25'] },
+  { id: 'h12', cat: 'phys', title: 'Schlaf als Training',
+    text: 'Basketballspieler der Stanford University verlängerten über mehrere Wochen ihren Schlaf, mit dem Ziel von zehn Stunden im Bett pro Nacht. Danach sprinteten sie schneller und trafen rund neun Prozent mehr Freiwürfe.',
+    src: [['Mah et al. 2011 · Sleep (PMC)', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC3119836/']],
+    rel: ['k26', 'h25', 'h19'] },
+  { id: 'h13', cat: 'phys', title: 'Bewegung als Medizin',
+    text: 'Eine große Übersichtsarbeit trug die Belege für 26 chronische Erkrankungen zusammen, bei denen Training als Therapie hilft, von Depression über Diabetes bis zu Rückenschmerzen.',
+    src: [['Pedersen & Saltin 2015 · Scandinavian Journal of Medicine & Science in Sports', 'https://onlinelibrary.wiley.com/doi/10.1111/sms.12581']],
+    rel: ['k1', 'k19', 'h21'] },
+  { id: 'k12', cat: 'phys', title: 'Die stärkste Sehne',
+    text: 'Die Achillessehne ist die dickste und stärkste Sehne des Menschen, mit einer Tragfähigkeit von bis zu 800 Kilogramm. Ihr Name stammt aus der Sage von Achilles: Seine Mutter Thetis wollte ihn unverwundbar machen, aber die Ferse, an der sie ihn hielt, blieb vom Wasser des Flusses unbenetzt.',
+    src: [['Wikipedia · Achillessehne', WP('Achillessehne')]],
+    rel: ['k27', 'k33'] },
+  { id: 'k13', cat: 'phys', title: 'Zwei Millionen pro Sekunde',
+    text: 'Rote Blutkörperchen leben etwa 120 Tage. In einem Erwachsenen kreisen rund 25 Billionen davon, und jeden Tag wird etwa ein Prozent erneuert. Das sind ungefähr zwei Millionen neue rote Blutkörperchen pro Sekunde. Sie haben keinen Zellkern und sind so verformbar, dass sie durch die feinsten Kapillaren passen.',
+    src: [['Wikipedia · Erythrozyt', WP('Erythrozyt')]],
+    rel: ['k14', 'k29'] },
+  { id: 'k14', cat: 'phys', title: 'Das Herz erneuert sich, ein bisschen',
+    text: 'Mithilfe von Kohlenstoff-14 aus den Atombombentests des Kalten Kriegs bestimmten Forschende das Alter von Herzmuskelzellen. Mit 20 Jahren wird etwa ein Prozent pro Jahr erneuert, mit 75 noch rund ein halbes Prozent. Der Großteil der Herzmuskelzellen begleitet uns also ein Leben lang.',
+    src: [['Bergmann et al. 2009 · Science (PubMed)', PUB(19342590)],
+          ['Karolinska Institutet · Pressemitteilung', 'https://news.ki.se/heart-cells-replaced-throughout-life']],
+    rel: ['k11', 'k15'] },
+  { id: 'k15', cat: 'phys', title: 'Fettzellen bleiben, ihr Inhalt schwankt',
+    text: 'Rund zehn Prozent unserer Fettzellen werden jedes Jahr ersetzt, ihre Gesamtzahl bleibt im Erwachsenenalter aber erstaunlich konstant. Sie wird in Kindheit und Jugend festgelegt. Nimmt man ab oder zu, ändert sich vor allem die Größe der Zellen, nicht ihre Anzahl.',
+    src: [['Spalding et al. 2008 · Nature (PubMed)', PUB(18454136)],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2008/05/080509133100.htm']],
+    rel: ['k14'] },
+  { id: 'k16', cat: 'phys', title: 'Zwei Minuten gegen langes Sitzen',
+    text: 'Erwachsene mit Übergewicht saßen an drei Versuchstagen: einmal ohne Unterbrechung, einmal mit zwei Minuten lockerem Gehen alle 20 Minuten und einmal mit zwei Minuten zügigem Gehen. Mit den Gehpausen fiel der Anstieg von Blutzucker und Insulin nach dem Essen um rund ein Viertel niedriger aus, schon beim gemütlichen Tempo.',
+    src: [['Dunstan et al. 2012 · Diabetes Care (PubMed)', PUB(22374636)]],
+    rel: ['k9', 'p20'] },
+  { id: 'k17', cat: 'phys', title: 'Ein Händedruck mit Aussagekraft',
+    text: 'Die PURE-Studie maß bei fast 140.000 Erwachsenen aus 17 Ländern die Griffkraft. Pro fünf Kilogramm weniger Griffkraft lag das Sterberisiko im Beobachtungszeitraum um 16 Prozent höher. Die Griffkraft sagte das sogar besser vorher als der systolische Blutdruck. Gemessen wurde ein Zusammenhang, kein Beweis, dass der Händedruck selbst schützt.',
+    src: [['Leong et al. 2015 · The Lancet (PubMed)', PUB(25982160)],
+          ['ScienceDaily · Zusammenfassung', 'https://sciencedaily.com/releases/2015/05/150513210142.htm']],
+    rel: ['k18', 'k19'] },
+  { id: 'k18', cat: 'phys', title: 'Der Sitz-Aufsteh-Test',
+    text: 'Auf den Boden setzen und wieder aufstehen, möglichst ohne Hände oder Knie: Für jede Hilfe gibt es einen Punkt Abzug, maximal sind 10 Punkte möglich. Bei über 2.000 Menschen zwischen 51 und 80 hing jeder zusätzliche Punkt mit 21 Prozent geringerer Sterblichkeit zusammen. Auch hier gilt: ein Zusammenhang, kein Schicksal.',
+    src: [['Brito et al. · European Society of Cardiology, Pressemitteilung', 'https://escardio.org/The-ESC/Press-Office/Press-releases/Ability-to-sit-and-rise-from-the-floor-is-closely-correlated-with-all-cause-mort']],
+    rel: ['k17', 'k7'] },
+  { id: 'k19', cat: 'phys', title: 'Fitness ohne Obergrenze',
+    text: 'Die Cleveland Clinic wertete Laufband-Belastungstests von 122.007 Patientinnen und Patienten aus. Je fitter, desto geringer das Sterberisiko, und eine Obergrenze für den Nutzen fanden die Forschenden nicht. Geringe Fitness war ähnlich riskant wie Rauchen, Diabetes oder Herzerkrankungen, teils sogar riskanter.',
+    src: [['Mandsager et al. 2018 · JAMA Network Open (Cleveland Clinic)', 'https://newsroom.clevelandclinic.org/2018/10/19/cleveland-clinic-research-shows-better-cardiorespiratory-fitness-correlates-to-a-longer-life/']],
+    rel: ['h13', 'k17'] },
+  { id: 'k20', cat: 'phys', title: 'Was die Faszienrolle kann',
+    text: 'Eine Meta-Analyse fasste die Studien zur Faszienrolle zusammen. Vor dem Sport rollen brachte im Schnitt 0,7 Prozent mehr Sprintleistung und 4 Prozent mehr Beweglichkeit. Nach dem Sport linderte es das Muskelschmerz-Empfinden etwas. Das Fazit der Autoren: Die Effekte sind eher klein und teils vernachlässigbar.',
+    src: [['Wiewelhove et al. 2019 · Frontiers in Physiology', 'https://www.frontiersin.org/articles/10.3389/fphys.2019.00376/text']],
+    rel: ['k21', 'k2'] },
+  { id: 'k21', cat: 'phys', title: 'Dehnen vor dem Sport',
+    text: 'Statisches Dehnen direkt vor dem Sport senkte die Leistung im Schnitt leicht, um 3,7 Prozent. Bei 60 Sekunden und mehr pro Muskel waren es 4,6 Prozent, darunter nur 1,1 Prozent. Dynamisches Dehnen verbesserte die Leistung dagegen leicht. Empfehlung der Übersicht: Dehnen ja, aber in ein Aufwärmen mit anschließenden dynamischen Bewegungen eingebettet.',
+    src: [['Behm et al. 2016 · Applied Physiology, Nutrition, and Metabolism (PubMed)', PUB(26642915)]],
+    rel: ['k20', 'k33'] },
+  { id: 'k22', cat: 'phys', title: 'Eisbad mit Nebenwirkung',
+    text: '21 Männer trainierten zwölf Wochen lang zweimal pro Woche Kraft. Etwa die Hälfte nahm danach jeweils zehn Minuten ein 10 Grad kaltes Bad, die anderen fuhren locker Rad. Die Radgruppe legte mehr Muskelmasse und Kraft zu. Das Eisbad dämpfte offenbar die Anpassung an das Training.',
+    src: [['Roberts et al. 2015 · Journal of Physiology (DOI)', 'https://doi.org/10.1113/JP270570'],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2015/08/150811103654.htm']],
+    rel: ['k4', 'k20'] },
+  { id: 'k23', cat: 'phys', title: 'Zehn Tage Bettruhe',
+    text: 'Zwölf gesunde ältere Erwachsene, im Schnitt 67 Jahre alt, blieben zehn Tage im Bett. Danach hatten sie fast ein Kilogramm Muskelmasse an den Beinen verloren. Jüngere Erwachsene hatten in einer früheren Studie nach 28 Tagen Bettruhe weniger als 0,4 Kilogramm verloren.',
+    src: [['Kortebein et al. 2007 · JAMA (University of Arkansas for Medical Sciences)', 'https://news.uams.edu/?p=11974']],
+    rel: ['k7', 'k24'] },
+  { id: 'k24', cat: 'phys', title: 'Aktiv bleiben bei Rückenschmerz',
+    text: 'Bei akuten Kreuzschmerzen war früher Bettruhe üblich. Eine Cochrane-Übersicht kommt zu dem Schluss: Wer den Rat bekommt, aktiv zu bleiben, hat etwas weniger Schmerzen und kommt im Alltag etwas besser zurecht als mit Bettruhe. Bei Ischias machte es kaum einen Unterschied.',
+    src: [['Cochrane Review · Bettruhe oder aktiv bleiben bei akuten Kreuzschmerzen', 'https://www.cochrane.org/evidence/CD007612_advice-rest-bed-versus-advice-stay-active-acute-low-back-pain-and-sciatica']],
+    rel: ['k25', 'h33'] },
+  { id: 'k25', cat: 'phys', title: 'Befunde ohne Schmerzen',
+    text: 'Eine Übersicht über 3.110 Menschen ohne Rückenschmerzen fand in der Bildgebung bei 37 Prozent der 20-Jährigen eine Bandscheibendegeneration, bei den 80-Jährigen bei 96 Prozent. Bandscheibenvorwölbungen hatten etwa 30 Prozent der 20-Jährigen und 84 Prozent der 80-Jährigen. Viele Befunde gehören also zum normalen Älterwerden.',
+    src: [['Brinjikji et al. 2015 · American Journal of Neuroradiology (PubMed)', PUB(25430861)],
+          ['Henry Ford Health · Abstract', 'https://scholarlycommons.henryford.com/radiology_articles/148']],
+    rel: ['k24', 'h8'] },
+  { id: 'k26', cat: 'phys', title: 'Schlaf und Verletzungen',
+    text: 'Eine Befragung von 112 jugendlichen Sportlerinnen und Sportlern einer Schule in Kalifornien ergab: Wer im Schnitt acht Stunden oder mehr schlief, hatte sich deutlich seltener verletzt als wer kürzer schlief. Die Studie ist klein und zeigt nur einen Zusammenhang.',
+    src: [['Milewski et al. 2014 · Journal of Pediatric Orthopaedics (PubMed)', PUB(25028798)],
+          ['EurekAlert · Pressemitteilung', 'https://www.eurekalert.org/news-releases/775980']],
+    rel: ['h12', 'h27'] },
+  { id: 'k27', cat: 'phys', title: 'Zum Laufen geboren?',
+    text: 'Die Biologen Dennis Bramble und Daniel Lieberman argumentieren, dass Ausdauerlaufen unseren Körper geformt hat. Hinweise sehen sie in der langen, federnden Achillessehne, einem Band im Nacken, das den Kopf beim Laufen stabilisiert, im großen Gesäßmuskel und in der Kühlung über Kopf und Gesicht. Es ist eine Hypothese: Warum genau das Laufen damals so wichtig war, wissen auch die Autoren nicht sicher.',
+    src: [['Bramble & Lieberman 2004 · Nature (ScienceDaily)', 'https://www.sciencedaily.com/releases/2004/11/041123163757.htm'],
+          ['Nature News 2004', 'https://www.nature.com/news/2004/041115/full/news041115-9.html']],
+    rel: ['k12'] },
+  { id: 'k28', cat: 'phys', title: 'Wir werden kühler',
+    text: 'Die berühmten 37,0 Grad gehen auf Carl Wunderlich im Jahr 1851 zurück. Eine Auswertung von über 677.000 Messungen aus mehr als 150 Jahren zeigt: Die Körpertemperatur in den USA ist pro Jahrzehnt um etwa 0,03 Grad gesunken. Männer, die in den 2000ern geboren wurden, sind im Schnitt rund 0,6 Grad kühler als Männer, die Anfang des 19. Jahrhunderts zur Welt kamen.',
+    src: [['Protsiv et al. 2020 · eLife (PubMed)', PUB(31908267)],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2020/01/200108090328.htm']],
+    rel: ['k11'] },
+  { id: 'k29', cat: 'phys', title: 'Halb Mensch, halb Bakterie',
+    text: 'Lange hieß es, im Körper lebten zehnmal mehr Bakterien als menschliche Zellen. Eine Neuberechnung von 2016 kommt für einen 70 Kilogramm schweren Mann auf rund 30 Billionen menschliche Zellen und 38 Billionen Bakterien. Das Verhältnis ist also eher 1 zu 1,3.',
+    src: [['Sender, Fuchs & Milo 2016 · PLoS Biology (PubMed)', PUB(27541692)],
+          ['BioNumbers · Harvard Medical School', 'https://bionumbers.hms.harvard.edu/bionumber.aspx?id=113006']],
+    rel: ['k13'] },
+  { id: 'k30', cat: 'phys', title: 'Über 300 Knochen bei der Geburt',
+    text: 'Säuglinge haben über 300 Knochen. Einige davon wachsen im Laufe der Zeit zusammen. Erwachsene kommen je nach Zählweise auf 206 bis 212 Knochen.',
+    src: [['Wikipedia · Skelett des Menschen', WP('Skelett_des_Menschen')]],
+    rel: ['k31', 'k10'] },
+  { id: 'k31', cat: 'phys', title: 'Der kleinste Knochen',
+    text: 'Der Steigbügel im Mittelohr ist der kleinste Knochen des Menschen: im Mittel 3,3 Millimeter hoch und nur 3 bis 4 Milligramm schwer. Er überträgt den Schall verlustarm ins Innenohr. Ein winziger Muskel kann die Gehörknöchelchen bei Lärm reflexartig versteifen, dem wird eine Schutzfunktion fürs Innenohr zugeschrieben.',
+    src: [['Wikipedia · Steigbügel (Anatomie)', WP('Steigbügel_(Anatomie)')]],
+    rel: ['h9', 'k30'] },
+  { id: 'k32', cat: 'phys', title: 'Knorpel ohne Blutgefäße',
+    text: 'Knorpel ist beim Erwachsenen frei von Blutgefäßen und Nerven. Seine Zellen werden über Diffusion versorgt, beim Gelenkknorpel aus der Gelenkflüssigkeit. Weil dem Gelenkknorpel zudem die Knorpelhaut fehlt, kann er sich kaum regenerieren.',
+    src: [['Wikipedia · Knorpel', WP('Knorpel')]],
+    rel: ['k25'] },
+  { id: 'k33', cat: 'phys', title: 'Die Nordic-Hamstring-Übung',
+    text: 'Man kniet, jemand hält die Fersen fest, und man lässt sich langsam nach vorn sinken. Eine Meta-Analyse mit 8.459 Sportlerinnen und Sportlern fand: Präventionsprogramme mit dieser Übung halbierten die Rate von Verletzungen der hinteren Oberschenkelmuskulatur.',
+    src: [['van Dyk et al. 2019 · British Journal of Sports Medicine', 'https://bjsm.bmj.com/content/early/2019/02/26/bjsports-2018-100045.long']],
+    rel: ['k21', 'k12'] },
+
+  /* ---------- Gehirn & Nerven ---------- */
+  { id: 'h1', cat: 'hirn', title: 'Ein teurer Mitbewohner',
+    text: 'Das Gehirn macht nur etwa 2 Prozent des Körpergewichts aus, verbraucht in Ruhe aber rund 20 Prozent der Energie. Kein anderes Organ ist so hungrig.',
+    src: [['Raichle & Gusnard 2002 · PNAS', 'https://www.pnas.org/doi/10.1073/pnas.172399499']],
+    rel: ['h24', 'k3'] },
+  { id: 'h2', cat: 'hirn', title: 'Der Hippocampus der Taxifahrer',
+    text: 'Londoner Taxifahrer lernen für ihre Prüfung Zehntausende Straßen auswendig. Bei ihnen ist der hintere Teil des Hippocampus größer als bei Vergleichspersonen, und zwar umso mehr, je länger sie schon fahren.',
+    src: [['Maguire et al. 2000 · PNAS (PubMed)', PUB(10716738)]],
+    rel: ['h11', 'h21'] },
+  { id: 'h3', cat: 'hirn', title: 'H. M. und der Spiegel',
+    text: 'Nach einer Hirnoperation 1953 konnte Henry Molaison keine neuen Erinnerungen mehr bilden. Beim Zeichnen im Spiegel wurde er trotzdem von Tag zu Tag besser, ohne sich an das Üben zu erinnern. Ein früher Beleg dafür, dass Bewegungslernen sein eigenes Gedächtnissystem hat.',
+    src: [['Squire 2009 · The Legacy of Patient H.M. for Neuroscience (Neuron)', 'https://www.cell.com/neuron/fulltext/S0896-6273(08)01095-7']],
+    rel: ['h36', 'h25'] },
+  { id: 'h4', cat: 'hirn', title: 'Die Spiegelbox',
+    text: 'Vilayanur Ramachandran ließ Menschen mit Phantomschmerz in eine Box mit Spiegel schauen, sodass der gesunde Arm wie der fehlende aussah. Bei manchen ließen schmerzhafte Verkrampfungen im Phantomarm nach. Daraus entstand die Spiegeltherapie.',
+    src: [['Ramachandran & Rogers-Ramachandran 1996 · Proceedings of the Royal Society B', 'https://royalsocietypublishing.org/doi/abs/10.1098/rspb.1996.0058']],
+    rel: ['h18', 'h22'] },
+  { id: 'h5', cat: 'hirn', title: 'Radeln trotz Freezing',
+    text: '2010 beschrieb ein Fallbericht einen Mann mit Parkinson, der wegen Freezing kaum ein paar Schritte gehen konnte, aber flüssig Fahrrad fuhr. Rhythmische, zyklische Bewegungen laufen offenbar über andere Steuerwege als das Gehen.',
+    src: [['Snijders & Bloem 2010 · New England Journal of Medicine', 'https://www.nejm.org/doi/abs/10.1056/NEJMicm0810287']],
+    rel: ['h35', 'h13'] },
+  { id: 'h6', cat: 'hirn', title: 'Das Gehirn spürt sich nicht',
+    text: 'Das Hirngewebe selbst hat keine Schmerzrezeptoren. Deshalb können manche Operationen am wachen Patienten stattfinden, damit das Team Sprache oder Bewegung live überprüfen kann. Betäubt werden müssen vor allem Kopfhaut, Knochenhaut und harte Hirnhaut.',
+    src: [['StatPearls · Anesthesia for Awake Craniotomy', 'https://www.ncbi.nlm.nih.gov/books/NBK572053/']],
+    rel: ['h10'] },
+  { id: 'h7', cat: 'hirn', title: 'Schneller als ein Rennwagen',
+    text: 'Die schnellsten Nervenfasern leiten Signale mit bis zu 120 Metern pro Sekunde, das sind gut 430 Kilometer pro Stunde. Fasern mit Myelinscheide sind dabei um ein Vielfaches schneller als solche ohne.',
+    src: [['„Knowing It Before Blocking It“, Teil A: Anatomie und Physiologie der Nerven · PMC', 'https://pmc.ncbi.nlm.nih.gov/articles/PMC10416754/']],
+    rel: ['h14', 'h33'] },
+  { id: 'h9', cat: 'hirn', title: 'Die Schnecke im Ohr',
+    text: 'Cochlea ist Latein für Schnecke. Die Hörschnecke im Innenohr ist aufgewunden wie ein Schneckenhaus, mit etwa zweieinhalb Windungen. Die wohl kleinste Zimtschnecke des Körpers.',
+    src: [['StatPearls · Inner Ear Anatomy and Cochlear Physiology', 'https://www.ncbi.nlm.nih.gov/books/NBK538335/']],
+    rel: ['k31'] },
+  { id: 'h10', cat: 'hirn', title: 'Der Homunkulus',
+    text: 'Wilder Penfield kartierte ab den 1930er-Jahren bei Operationen an wachen Patienten, welche Stelle der Hirnrinde welchen Körperteil versorgt. Hände, Lippen und Zunge bekommen dabei riesige Flächen, der Rücken nur ein winziges Stück.',
+    src: [['Catani 2017 · A little man of some importance (Brain)', 'https://academic.oup.com/brain/article/140/11/3055/4566636']],
+    rel: ['h6', 'h22'] },
+  { id: 'h11', cat: 'hirn', title: 'Jonglieren verändert das Gehirn',
+    text: 'Freiwillige lernten drei Monate lang jonglieren. Danach war die graue Substanz in Hirnregionen für die Wahrnehmung von Bewegung messbar gewachsen. Nach drei Monaten Pause bildete sie sich teilweise wieder zurück.',
+    src: [['Draganski et al. 2004 · Nature (PubMed)', PUB(14737157)]],
+    rel: ['h2', 'h34', 'k4'] },
+  { id: 'h14', cat: 'hirn', title: 'Nervenfasern für sanfte Berührung',
+    text: 'Die Haut hat eigene, langsame Nervenfasern für sanfte Berührung, die C-taktilen Fasern. Sie feuern am stärksten bei langsamem Streichen mit etwa 1 bis 10 Zentimetern pro Sekunde, und genau das empfinden Menschen als besonders angenehm.',
+    src: [['Löken et al. 2009 · Nature Neuroscience', 'https://www.nature.com/articles/nn.2312']],
+    rel: ['h7', 'p24', 'h28'] },
+  { id: 'h15', cat: 'hirn', title: 'Gänsehaut-Momente',
+    text: 'Wenn uns ein Musikstück Gänsehaut macht, schüttet das Gehirn Dopamin aus, denselben Botenstoff wie bei Essen oder anderen Belohnungen. Schon in der Vorfreude auf die Lieblingsstelle ist das Belohnungssystem aktiv.',
+    src: [['Salimpoor et al. 2011 · Nature Neuroscience (DOI)', 'https://doi.org/10.1038/nn.2726'],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2011/01/110112111117.htm']],
+    rel: ['p11', 'h34'] },
+  { id: 'h16', cat: 'hirn', title: 'Grün gegen Grübeln',
+    text: 'Teilnehmende gingen 90 Minuten entweder durch eine Naturlandschaft oder an einer belebten Straße entlang. Nach dem Naturspaziergang grübelten sie weniger, und eine Hirnregion, die mit Grübeln zusammenhängt, war weniger aktiv.',
+    src: [['Bratman et al. 2015 · PNAS', 'https://www.pnas.org/doi/abs/10.1073/pnas.1510459112']],
+    rel: ['p20', 'p29', 'p36'] },
+  { id: 'h17', cat: 'hirn', title: 'Placebo mit offenen Karten',
+    text: '80 Menschen mit Reizdarmsyndrom bekamen entweder gar keine Behandlung oder Tabletten, auf deren Dose deutlich „Placebo“ stand. Nach drei Wochen berichteten 59 Prozent der Placebo-Gruppe von ausreichender Linderung, in der Vergleichsgruppe 35 Prozent. Die Studie war klein, die Autoren wünschen sich größere Folgestudien.',
+    src: [['Kaptchuk et al. 2010 · PLoS ONE (Harvard Gazette)', 'https://news.harvard.edu/gazette/story/2010/12/placebos-work-even-without-deception']],
+    rel: ['h26'] },
+  { id: 'h18', cat: 'hirn', title: 'Graded Motor Imagery',
+    text: 'In einer kleinen Studie übten 13 Menschen mit chronischem CRPS je zwei Wochen lang drei Stufen: bei Handbildern links und rechts erkennen, Handbewegungen nur vorstellen, dann Spiegeltherapie. Verglichen mit der üblichen Behandlung gingen die Schmerzen deutlich zurück. Der Effekt zeigte sich auch, als die Kontrollgruppe später dasselbe Programm machte.',
+    src: [['Moseley 2004 · Pain (PubMed)', PUB(15109523)],
+          ['PEDro · Abstract', 'https://search.pedro.org.au/search-results/record-detail/12096']],
+    rel: ['h4', 'k6'] },
+  { id: 'h19', cat: 'hirn', title: 'Nachtschicht im Gehirn',
+    text: 'Bei Mäusen vergrößerte sich im Schlaf der Raum zwischen den Gehirnzellen um rund 60 Prozent. Dadurch strömte mehr Flüssigkeit durchs Gewebe, und Stoffwechselreste wie Beta-Amyloid wurden schneller abtransportiert. Ob es beim Menschen genauso abläuft, wird noch erforscht.',
+    src: [['Xie et al. 2013 · Science (PubMed)', PUB(24136970)],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2013/10/131017144636.htm']],
+    rel: ['h12', 'h25'] },
+  { id: 'h20', cat: 'hirn', title: 'Neue Nervenzellen im Alter? Eine Streitfrage',
+    text: 'Bilden Erwachsene im Hippocampus noch neue Nervenzellen? 2018 erschienen zwei Studien mit gegensätzlichem Ergebnis. Ein Team fand in Gewebeproben von Erwachsenen keine neugebildeten Neurone. Ein Team der Columbia University fand dagegen bei gesunden Menschen zwischen 14 und 79 Jahren Tausende junge Nervenzellen. Die Debatte ist nicht entschieden.',
+    src: [['Sorrells et al. 2018 · Nature (PubMed)', PUB(29513649)],
+          ['Boldrini et al. 2018 · Cell Stem Cell (Columbia University)', 'https://www.cuimc.columbia.edu/news/even-old-brains-can-make-new-neurons-study-finds']],
+    rel: ['h21', 'h11'] },
+  { id: 'h21', cat: 'hirn', title: 'Ausdauer für den Hippocampus',
+    text: 'In einer randomisierten Studie mit 120 älteren Erwachsenen vergrößerte Ausdauertraining den Hippocampus um 2 Prozent, in der Kontrollgruppe schrumpfte er. Mit dem Wachstum verbesserte sich auch das räumliche Gedächtnis.',
+    src: [['Erickson et al. 2011 · PNAS (University of Illinois)', 'https://experts.illinois.edu/en/publications/exercise-training-increases-size-of-hippocampus-and-improves-memo/']],
+    rel: ['h2', 'h20', 'h13'] },
+  { id: 'h22', cat: 'hirn', title: 'Die Gummihand-Illusion',
+    text: 'Der echte Arm liegt verdeckt, sichtbar ist eine Gummihand. Werden beide gleichzeitig mit einem Pinsel gestreichelt, spüren viele die Berührung plötzlich in der Gummihand. In der ersten Studie 1998 beschrieben 8 von 10 Teilnehmenden die Gummihand danach als ihre eigene.',
+    src: [['Botvinick & Cohen 1998 · Nature (ScienceDaily)', 'https://www.sciencedaily.com/releases/1998/02/980225074435.htm']],
+    rel: ['h4', 'h23'] },
+  { id: 'h23', cat: 'hirn', title: 'Warum man sich nicht selbst kitzeln kann',
+    text: 'Selbst ausgelöste Berührungen fühlen sich weniger kitzelig an als genau dieselbe Berührung von außen. Das Kleinhirn sagt offenbar voraus, was die eigene Bewegung auf der Haut auslösen wird, und dämpft das Signal. Im Hirnscanner war die Körperfühlrinde bei fremder Berührung aktiver.',
+    src: [['Blakemore, Wolpert & Frith 1998 · Nature Neuroscience (DOI)', 'https://doi.org/10.1038/2870']],
+    rel: ['h22', 'h24'] },
+  { id: 'h24', cat: 'hirn', title: '86 Milliarden, die meisten im Kleinhirn',
+    text: 'Oft liest man von 100 Milliarden Nervenzellen im Gehirn. Eine genaue Zählung kam 2009 auf rund 86 Milliarden. Überraschend: Rund 80 Prozent davon sitzen im Kleinhirn, nur etwa 19 Prozent in der Großhirnrinde.',
+    src: [['Azevedo et al. 2009 · Journal of Comparative Neurology (DOI)', 'https://doi.org/10.1002/cne.21974']],
+    rel: ['h1', 'h23'] },
+  { id: 'h25', cat: 'hirn', title: 'Über Nacht besser',
+    text: 'Teilnehmende übten eine Fingertipp-Folge auf der Tastatur. Nach einer Nacht Schlaf waren sie rund 20 Prozent schneller, ohne weiteres Üben. Wer stattdessen zwölf Stunden wach blieb, verbesserte sich kaum. Der Zuwachs hing vor allem mit dem Leichtschlaf in den letzten zwei Stunden vor dem Aufwachen zusammen.',
+    src: [['Walker et al. 2002 · Neuron (PubMed)', PUB(12123620)],
+          ['ScienceDaily · Zusammenfassung', 'https://www.sciencedaily.com/releases/2002/07/020702065823.htm']],
+    rel: ['h12', 'h36', 'p26'] },
+  { id: 'h26', cat: 'hirn', title: 'Placebo hat Biologie',
+    text: '1978 zeigte ein Team um Jon Levine: Die schmerzlindernde Wirkung eines Placebos lässt sich mit Naloxon blockieren, einem Mittel, das Opioid-Rezeptoren besetzt. Das spricht dafür, dass beim Placebo-Effekt körpereigene Opioide mitspielen. Für manche Forschende ist das die Geburtsstunde der Placebo-Biologie.',
+    src: [['Levine, Gordon & Fields 1978 · The Lancet (PubMed)', PUB(80579)],
+          ['Wikipedia · Jon Levine', 'https://en.wikipedia.org/wiki/Jon_Levine_(neuroscientist)']],
+    rel: ['h17', 'p23'] },
+  { id: 'h27', cat: 'hirn', title: 'Müde wie beschwipst',
+    text: 'Freiwillige blieben im Versuch lange wach und machten regelmäßig Leistungstests. Nach 17 bis 19 Stunden ohne Schlaf schnitten sie bei den meisten Tests so ab wie mit 0,5 Promille Alkohol im Blut. Nach 18 bis 20 Stunden lagen sie rechnerisch schon bei Werten wie mit 1 Promille.',
+    src: [['Williamson, Feyer et al. 2000 · Bericht für das australische Verkehrsministerium', 'https://www.infrastructure.gov.au/infrastructure-transport-vehicles/road-transport-infrastructure/safety/publications/2000/Fatig_Alc']],
+    rel: ['h25', 'k26'] },
+  { id: 'h28', cat: 'hirn', title: 'Warum Reiben hilft',
+    text: 'Wer sich stößt, reibt die Stelle. Die Gate-Control-Theorie von Ronald Melzack und Patrick Wall aus dem Jahr 1965 erklärt, warum das hilft: Berührung und Druck laufen über dicke, schnelle Nervenfasern und können die Weiterleitung von Schmerzsignalen dämpfen, wie ein Tor, das sich schließt.',
+    src: [['Melzack & Wall 1965 · Science (PubMed)', PUB(5320816)],
+          ['Cleveland Clinic · Gate-Control-Theorie erklärt', 'https://health.clevelandclinic.org/gate-control-theory-of-pain']],
+    rel: ['h14', 'h26'] },
+  { id: 'h29', cat: 'hirn', title: 'Die Sehrinde liest Braille',
+    text: 'Wenn früh erblindete Menschen Braille ertasteten, wurde in PET-Scans ihre Sehrinde aktiv. Bei sehenden Vergleichspersonen sank die Aktivität dort sogar. Hirnareale, die normalerweise fürs Sehen zuständig sind, können also auch andere Sinne verarbeiten.',
+    src: [['Sadato et al. 1996 · Nature', 'https://www.nature.com/articles/380526a0']],
+    rel: ['h10', 'h39'] },
+  { id: 'h30', cat: 'hirn', title: 'Leben ohne Lagesinn',
+    text: 'Zwei junge Menschen mit einer Mutation im Gen PIEZO2 konnten ohne hinzusehen kaum spüren, wie ihre Gelenke stehen. Auch Vibrationen nahmen sie schlecht wahr, Schmerz und Temperatur dagegen normal. Sie glichen den fehlenden Lagesinn über die Augen aus. Mit verbundenen Augen war Gehen für sie extrem schwierig.',
+    src: [['Chesler et al. 2016 · New England Journal of Medicine (NIH)', 'https://www.ninds.nih.gov/news-events/news/press-releases/sixth-sense-may-be-more-just-feeling']],
+    rel: ['h31', 'h14'] },
+  { id: 'h31', cat: 'hirn', title: 'Chili ist Hitze, Minze ist Kälte',
+    text: 'Warum brennt Chili? David Julius fand mit Capsaicin aus Chilis den Rezeptor TRPV1, der eigentlich auf schmerzhafte Hitze anspricht. Mit Menthol wurde TRPM8 entdeckt, ein Kälterezeptor. Ardem Patapoutian fand die Drucksensoren Piezo1 und Piezo2. Dafür gab es 2021 den Nobelpreis für Medizin.',
+    src: [['Nobelpreis für Physiologie oder Medizin 2021 · Pressemitteilung', 'https://www.nobelprize.org/prizes/medicine/2021/press-release/']],
+    rel: ['h30'] },
+  { id: 'h32', cat: 'hirn', title: 'Gähnen steckt an',
+    text: 'Gähnen steckt an, oft reicht schon das Lesen über Gähnen. In einem Versuch ließen sich 72 Prozent der Hunde von gähnenden Menschen anstecken. Warum wir überhaupt gähnen, ist nicht abschließend geklärt. Eine These lautet, dass Gähnen das Gehirn kühlt.',
+    src: [['Wikipedia · Gähnen', WP('Gähnen')]],
+    rel: ['p9'] },
+  { id: 'h33', cat: 'hirn', title: 'Zwei Nerven in einer Hülle',
+    text: 'Der Ischiasnerv ist der dickste Nerv des Körpers. Er zieht durch das Gesäß an der Rückseite des Oberschenkels Richtung Kniekehle. Genau genommen sind es zwei Nerven, die von einer gemeinsamen Bindegewebshülle umgeben sind und sich später in den Nervus tibialis und den Nervus fibularis communis aufteilen.',
+    src: [['Wikipedia · Ischiasnerv', WP('Ischiasnerv')]],
+    rel: ['k24', 'h7'] },
+  { id: 'h34', cat: 'hirn', title: 'Das Gehirn der Musiker',
+    text: 'Profi-Keyboarder unterschieden sich von Amateuren und Nichtmusikern in der grauen Substanz von Hirnregionen für Motorik, Hören und räumliches Sehen. Die Unterschiede hingen eng damit zusammen, wie professionell und wie intensiv jemand übte.',
+    src: [['Gaser & Schlaug 2003 · Journal of Neuroscience (PubMed)', PUB(14534258)],
+          ['UCSF Sound Health · Abstract', 'https://soundhealth.ucsf.edu/node/951']],
+    rel: ['h11', 'h15'] },
+  { id: 'h35', cat: 'hirn', title: 'Den schwachen Arm fordern',
+    text: 'In der EXCITE-Studie wurden 222 Menschen drei bis neun Monate nach einem Schlaganfall aufgeteilt. Die eine Hälfte trug zwei Wochen lang einen Handschuh an der gesunden Hand und trainierte gezielt den geschwächten Arm. Verglichen mit der üblichen Versorgung konnten sie den Arm besser einsetzen, auch noch nach zwölf Monaten.',
+    src: [['Wolf et al. 2006 · JAMA (PubMed)', PUB(17077374)],
+          ['NICHD · Pressemitteilung', 'https://www.nichd.nih.gov/news/releases/wolf_cimt']],
+    rel: ['h5', 'k5'] },
+  { id: 'h36', cat: 'hirn', title: 'Tetris im Traum',
+    text: '27 Menschen spielten drei Tage lang Tetris. 17 von ihnen berichteten beim Einschlafen von Bildern fallender Tetris-Steine. Sogar drei von fünf Menschen mit schwerer Amnesie sahen die Steine, obwohl sie sich nicht erinnern konnten, das Spiel gespielt zu haben.',
+    src: [['Stickgold et al. 2000 · Science (ScienceDaily)', 'https://sciencedaily.com/releases/2000/10/001013073843.htm']],
+    rel: ['h3', 'h25'] },
+  { id: 'h37', cat: 'hirn', title: 'Farbige Wochentage',
+    text: 'Manche Menschen sehen bei Wochentagen, Buchstaben oder Tönen automatisch Farben. Eine Studie von 2006 ergab: Synästhesie ist rund 88-mal häufiger als zuvor angenommen. Die häufigste Form sind farbige Wochentage, farbige Buchstaben kommen bei etwa einem Prozent der Menschen vor.',
+    src: [['Simner et al. 2006 · Perception (University of Sussex)', 'https://sro.sussex.ac.uk/id/eprint/14073/'],
+          ['PubMed', PUB(17076063)]],
+    rel: ['h29'] },
+  { id: 'h38', cat: 'hirn', title: 'Erinnern heißt rekonstruieren',
+    text: 'Versuchspersonen sahen Filme von Autounfällen. Fragte man, wie schnell die Autos waren, als sie „ineinanderkrachten“, schätzten sie im Schnitt 40,8 Meilen pro Stunde, bei „sich berührten“ nur 31,8. Eine Woche später erinnerten sich nach dem Wort „krachten“ 16 von 50 an zerbrochenes Glas. Im Film gab es keins.',
+    src: [['Loftus & Palmer 1974 · Journal of Verbal Learning and Verbal Behavior (PDF, UC Irvine)', 'https://bpb-us-e2.wpmucdn.com/faculty.sites.uci.edu/dist/c/571/files/2024/08/LoftusPalmer_ReconstructionAuto_JVLVB1974.pdf']],
+    rel: ['p5', 'h3'] },
+  { id: 'h39', cat: 'hirn', title: 'Der blinde Fleck',
+    text: 'In jedem Auge gibt es eine Stelle ohne Sehzellen, dort, wo der Sehnerv das Auge verlässt. Trotzdem sehen wir kein Loch: Das Gehirn füllt die Lücke mit Informationen aus der Umgebung und vom anderen Auge auf. Entdeckt hat den blinden Fleck Edme Mariotte im Jahr 1660.',
+    src: [['Wikipedia · Blinder Fleck (Auge)', WP('Blinder_Fleck_(Auge)')]],
+    rel: ['h29', 'h38'] },
+
+  /* ---------- Allgemeinwissen ---------- */
+  { id: 'a1', cat: 'allg', title: 'Drei Herzen, blaues Blut',
+    text: 'Kraken haben drei Herzen: Zwei pumpen Blut durch die Kiemen, eines durch den restlichen Körper. Ihr Blut ist blau, weil der Sauerstoff an kupferhaltiges Hämocyanin gebunden ist statt an eisenhaltiges Hämoglobin.',
+    src: [['Wikipedia · Kraken', WP('Kraken')]],
+    rel: ['a7', 'a24'] },
+  { id: 'a2', cat: 'allg', title: 'Ein Tag länger als ein Jahr',
+    text: 'Die Venus dreht sich so langsam um sich selbst, dass eine Umdrehung rund 243 Erdtage dauert. Für einen Umlauf um die Sonne braucht sie nur etwa 225 Tage. Ein Venustag ist also länger als ein Venusjahr.',
+    src: [['Wikipedia · Venus (Planet)', WP('Venus_(Planet)')]],
+    rel: ['a10', 'a29'] },
+  { id: 'a3', cat: 'allg', title: 'Die Banane ist eine Beere',
+    text: 'Botanisch gesehen sind Bananen Beeren, genau wie Tomaten und Kiwis. Die Erdbeere dagegen ist gar keine Beere, sondern eine Sammelnussfrucht. Die eigentlichen Früchte sind die kleinen Nüsschen auf ihrer Oberfläche.',
+    src: [['Wikipedia · Beere', WP('Beere')]],
+    rel: ['a14', 'a9'] },
+  { id: 'a4', cat: 'allg', title: 'Kleopatra und die Mondlandung',
+    text: 'Die Cheops-Pyramide wurde um 2600 v. Chr. gebaut, Kleopatra lebte im 1. Jahrhundert v. Chr. Damit lag Kleopatras Zeit näher an der Mondlandung 1969 als am Bau der Pyramide.',
+    src: [['Wikipedia · Cheops-Pyramide', WP('Cheops-Pyramide')], ['Wikipedia · Kleopatra VII.', WP('Kleopatra_VII.')]],
+    rel: ['a35', 'a12'] },
+  { id: 'a5', cat: 'allg', title: 'Würfel aus dem Wombat',
+    text: 'Wombats hinterlassen würfelförmigen Kot. Forschende fanden heraus, dass unterschiedlich steife Abschnitte der Darmwand die Kanten formen. Dafür gab es 2019 sogar einen Ig-Nobelpreis.',
+    src: [['Wikipedia · Wombats', WP('Wombats')]],
+    rel: ['a1'] },
+  { id: 'a6', cat: 'allg', title: 'Hamburg, Stadt der Brücken',
+    text: 'Hamburg hat rund 2.500 Brücken, mehr als Venedig, Amsterdam und London zusammen. Damit gilt es als brückenreichste Stadt Europas.',
+    src: [['Wikipedia · Hamburg', WP('Hamburg')]],
+    rel: ['a18', 'a15'] },
+  { id: 'a7', cat: 'allg', title: 'Haie sind älter als Bäume',
+    text: 'Die ersten Haie schwammen schon vor über 400 Millionen Jahren durch die Meere. Die ersten Bäume entstanden erst Dutzende Millionen Jahre später, vor rund 385 Millionen Jahren.',
+    src: [['Wikipedia · Haie', WP('Haie')]],
+    rel: ['a1'] },
+  { id: 'a8', cat: 'allg', title: 'Schmecken mit den Füßen',
+    text: 'Schmetterlinge haben Geschmackssinneszellen an den Füßen. Weibchen trommeln damit auf Blätter, um zu prüfen, ob sie sich als Futter für ihre Raupen eignen.',
+    src: [['Wikipedia · Schmetterlinge', WP('Schmetterlinge')]],
+    rel: ['a17', 'a9'] },
+  { id: 'a9', cat: 'allg', title: 'Rosa durch Futter',
+    text: 'Flamingos sind nicht von Natur aus rosa. Ihre Farbe stammt von Carotinoiden aus Algen und kleinen Krebstieren, die sie fressen. Fehlt diese Nahrung, verblasst das Gefieder.',
+    src: [['Wikipedia · Flamingos', WP('Flamingos')]],
+    rel: ['a3', 'a8'] },
+  { id: 'a10', cat: 'allg', title: 'Der Mond zieht davon',
+    text: 'Der Mond entfernt sich jedes Jahr um etwa 3,8 Zentimeter von der Erde. Gemessen wird das mit Laserstrahlen, die an Reflektoren zurückgeworfen werden, die Apollo-Astronauten auf dem Mond aufgestellt haben.',
+    src: [['Wikipedia · Mond', WP('Mond')]],
+    rel: ['a2', 'a29'] },
+  { id: 'a11', cat: 'allg', title: 'Heißer als die Sonne',
+    text: 'Ein Blitzkanal wird bis zu 30.000 Grad Celsius heiß. Das ist rund fünfmal heißer als die Oberfläche der Sonne mit etwa 5.500 Grad.',
+    src: [['Wikipedia · Blitz', WP('Blitz')]],
+    rel: ['a13'] },
+  { id: 'a12', cat: 'allg', title: 'Der kürzeste Krieg',
+    text: 'Der Britisch-Sansibarische Krieg am 27. August 1896 dauerte nur etwa 40 Minuten. Er gilt als kürzester Krieg der Geschichte.',
+    src: [['Wikipedia · Britisch-Sansibarischer Krieg', WP('Britisch-Sansibarischer_Krieg')]],
+    rel: ['a4'] },
+  { id: 'a13', cat: 'allg', title: 'Ein Teelöffel Stern',
+    text: 'Neutronensterne sind so dicht, dass ein Teelöffel ihrer Materie Hunderte Millionen Tonnen wiegen würde. Ein ganzer Neutronenstern ist dabei nur etwa 20 Kilometer groß.',
+    src: [['Wikipedia · Neutronenstern', WP('Neutronenstern')]],
+    rel: ['a2', 'a11'] },
+  { id: 'a14', cat: 'allg', title: 'Honig verdirbt kaum',
+    text: 'Honig enthält sehr wenig Wasser und sehr viel Zucker, ist leicht sauer und bildet etwas Wasserstoffperoxid. Bakterien und Pilze haben darin kaum eine Chance. Gut verschlossen hält sich Honig deshalb extrem lange.',
+    src: [['Wikipedia · Honig', WP('Honig')]],
+    rel: ['a17', 'a3'] },
+  { id: 'a15', cat: 'allg', title: 'Der erste Adventskranz war ein Hamburger',
+    text: '1839 führte Johann Hinrich Wichern im Rauhen Haus in Hamburg den Adventskranz ein. Der erste bestand aus einem Wagenrad mit vier großen weißen Kerzen für die Adventssonntage und 20 kleinen roten für die Tage dazwischen. Seit etwa 1860 wird der Adventskranz aus Tannengrün gebunden.',
+    src: [['Wikipedia · Adventskranz', WP('Adventskranz')]],
+    rel: ['a21', 'a6'] },
+  { id: 'a16', cat: 'allg', title: 'Warum Schneeflocken sechs Arme haben',
+    text: 'Wassermoleküle können sich im Eiskristall nur in Winkeln von 60 oder 120 Grad aneinanderlagern. Deshalb sind Schneekristalle sechseckig. Eine Schneeflocke enthält etwa eine Trillion Wassermoleküle, und mit hoher Wahrscheinlichkeit gab es noch nie zwei komplexe Schneekristalle, die exakt gleich waren.',
+    src: [['Wikipedia · Schnee', WP('Schnee')]],
+    rel: ['a34', 'a23'] },
+  { id: 'a17', cat: 'allg', title: 'Bienen tanzen den Weg',
+    text: 'Honigbienen zeigen einander Futterquellen per Tanz. Der Winkel des Schwänzellaufs zur Senkrechten entspricht dem Winkel zwischen Sonne und Ziel, und je weiter das Ziel entfernt ist, desto länger dauert der Tanz. Für nahe Ziele bis etwa 100 Meter gibt es den Rundtanz. Karl von Frisch bekam für die Entschlüsselung 1973 den Nobelpreis.',
+    src: [['Wikipedia · Tanzsprache', WP('Tanzsprache')]],
+    rel: ['a8', 'a14'] },
+  { id: 'a18', cat: 'allg', title: 'Die Speicherstadt steht auf Holz',
+    text: 'Hamburgs Speicherstadt ist der weltgrößte historische Lagerhauskomplex. Die Speicher stehen auf Pfählen aus zwölf Meter langen Nadelholzstämmen. Gebaut wurde ab 1883, gelagert wurden vor allem Kaffee, Tee und Gewürze. Seit 2015 gehört sie zum UNESCO-Welterbe.',
+    src: [['Wikipedia · Speicherstadt', WP('Speicherstadt_Hamburg')]],
+    rel: ['a6', 'a20'] },
+  { id: 'a19', cat: 'allg', title: 'Der Glückskeks ist kein Chinese',
+    text: 'Glückskekse gibt es in vielen chinesischen Restaurants, aber sie stammen nicht aus China. Sie tauchten Anfang des 20. Jahrhunderts an der amerikanischen Westküste auf und haben japanische Wurzeln, eine Spur führt zu einem japanischen Teegarten im Golden Gate Park in San Francisco. In China selbst waren sie lange völlig unbekannt.',
+    src: [['Wikipedia · Glückskeks', WP('Glückskeks')]],
+    rel: ['a26'] },
+  { id: 'a20', cat: 'allg', title: 'Die weiße Haut der Elbphilharmonie',
+    text: 'Die Wände im Großen Saal der Elbphilharmonie sind mit insgesamt 10.000 Gipsfaserplatten verkleidet, der sogenannten „Weißen Haut“. Jede Platte ist ein Unikat, ihre Oberfläche wurde mit mathematischen Algorithmen am Computer berechnet und gefräst. Um den Klang im Saal mit 2.100 Plätzen kümmerte sich der Akustiker Yasuhisa Toyota.',
+    src: [['Wikipedia · Elbphilharmonie', WP('Elbphilharmonie')]],
+    rel: ['a18', 'h34'] },
+  { id: 'a21', cat: 'allg', title: 'Der Weihnachtsbaum ist alt',
+    text: 'Für 1539 ist belegt, dass im Straßburger Münster ein Weihnachtsbaum aufgestellt wurde. 1605 heißt es dann: „Auff Weihenachten richtett man Dannenbäum zu Straszburg in den stuben“. Vom deutschsprachigen Raum aus verbreitete sich der Brauch im 19. Jahrhundert über die ganze Welt.',
+    src: [['Wikipedia · Weihnachtsbaum', WP('Weihnachtsbaum')]],
+    rel: ['a15', 'a22'] },
+  { id: 'a22', cat: 'allg', title: 'Coca-Cola hat ihn nicht erfunden',
+    text: 'Den rot-weißen Weihnachtsmann gab es schon vor der Coca-Cola-Werbung. Schon 1822 beschrieb ein Gedicht einen Mann im roten Mantel, und der Zeichner Thomas Nast wählte Rot und Weiß, als seine Zeichnungen koloriert werden sollten. Coca-Cola machte das Bild ab 1931 mit Zeichnungen von Haddon Sundblom nur weltberühmt. Die Figur selbst geht auf Nikolaus-Bräuche zurück.',
+    src: [['Wikipedia · Weihnachtsmann', WP('Weihnachtsmann')]],
+    rel: ['a31', 'a21'] },
+  { id: 'a23', cat: 'allg', title: 'Kerzen im All',
+    text: 'In der Schwerelosigkeit brennt eine Kerze mit einer kugelförmigen Flamme. Ohne Auftrieb steigt keine heiße Luft nach oben, und der Sauerstoff kommt nur über Diffusion an die Flamme. Dafür sieht man das bläuliche Leuchten der Verbrennungsgase.',
+    src: [['Wikipedia · Kerze', WP('Kerze')]],
+    rel: ['a16', 'a33'] },
+  { id: 'a24', cat: 'allg', title: 'Bärtierchen überleben das All',
+    text: 'Bärtierchen sind meist nur 0,1 bis 0,5 Millimeter groß und fast unzerstörbar. Ausgetrocknet überstehen sie als sogenanntes Tönnchen Temperaturen von minus 196 bis plus 90 Grad. 2007 schickte die ESA Bärtierchen mit dem Satelliten FOTON-M3 zehn Tage ins offene Weltall, und es gab Überlebende.',
+    src: [['Wikipedia · Bärtierchen', WP('Bärtierchen')]],
+    rel: ['a1', 'a33'] },
+  { id: 'a25', cat: 'allg', title: 'Der Eiffelturm wächst im Sommer',
+    text: 'Stahl dehnt sich bei Wärme aus. An heißen Tagen wird der Eiffelturm deshalb einige Zentimeter höher, der Rekord lag bei 18 Zentimetern im Sommer 1976. Außerdem neigt er sich leicht von der Sonne weg, weil sich die sonnige Seite stärker ausdehnt. Zusammengehalten wird er von 2,5 Millionen Nieten.',
+    src: [['Wikipedia · Eiffelturm', WP('Eiffelturm')]],
+    rel: ['h8', 'a27'] },
+  { id: 'a26', cat: 'allg', title: 'Nintendo begann mit Spielkarten',
+    text: 'Nintendo wurde am 23. September 1889 in Kyōto von Fusajirō Yamauchi gegründet. Am Anfang stellte die Firma ausschließlich traditionelle japanische Hanafuda-Spielkarten her.',
+    src: [['Wikipedia · Nintendo', WP('Nintendo')]],
+    rel: ['a19', 'h36'] },
+  { id: 'a27', cat: 'allg', title: 'Glas fließt nicht',
+    text: 'Gern erzählt: Alte Kirchenfenster seien unten dicker, weil Glas über die Jahrhunderte langsam nach unten fließt. Stimmt nicht. Bei Raumtemperatur bräuchte das Jahrmillionen. Die Verdickung stammt vom damaligen Herstellungsverfahren, dem Zylinderblasen.',
+    src: [['Wikipedia · Glas', WP('Glas')]],
+    rel: ['a25'] },
+  { id: 'a28', cat: 'allg', title: 'Kolibris fliegen rückwärts',
+    text: 'Kolibris können in der Luft stehen, seitwärts und sogar rückwärts fliegen. Dafür schlagen sie 40 bis 50 Mal pro Sekunde mit den Flügeln. Ihr Herz ist im Verhältnis zum Körper sehr groß und schlägt 400 bis 500 Mal pro Minute.',
+    src: [['Wikipedia · Kolibris', WP('Kolibris')]],
+    rel: ['k11', 'a17'] },
+  { id: 'a29', cat: 'allg', title: 'Im Winter sind wir der Sonne am nächsten',
+    text: 'Anfang Januar erreicht die Erde ihren sonnennächsten Punkt, rund 147 Millionen Kilometer. Anfang Juli sind es etwa 152 Millionen. Die Jahreszeiten entstehen also nicht durch den Abstand zur Sonne, sondern durch die Neigung der Erdachse.',
+    src: [['Wikipedia · Jahreszeit', WP('Jahreszeit')], ['Wikipedia · Erdbahn', WP('Erdbahn')]],
+    rel: ['a30', 'a10'] },
+  { id: 'a30', cat: 'allg', title: 'Ab jetzt wird’s heller',
+    text: 'Auf der Nordhalbkugel ist am 21. oder 22. Dezember Wintersonnenwende: der kürzeste Tag und die längste Nacht des Jahres. Danach wird der Bogen, den die Sonne am Himmel zieht, wieder länger und höher. Ab jetzt gibt es jeden Tag ein bisschen mehr Licht.',
+    src: [['Wikipedia · Sonnenwende', WP('Sonnenwende')]],
+    rel: ['a29'] },
+  { id: 'a31', cat: 'allg', title: 'Rudolph war Werbung',
+    text: 'Rudolph mit der roten Nase entstand 1939 als Werbeidee: Robert L. May schrieb die Geschichte für ein Malbuch der Kaufhauskette Montgomery Ward in Chicago. Das Lied dazu schrieb sein Schwager Johnny Marks, und 1949 machte Gene Autry es zum großen Hit.',
+    src: [['Wikipedia · Rudolph, the Red-Nosed Reindeer', WP('Rudolph_das_Rentier')]],
+    rel: ['a32', 'a22'] },
+  { id: 'a32', cat: 'allg', title: 'Rentieraugen werden im Winter blau',
+    text: 'Bei arktischen Rentieren schimmert die reflektierende Schicht hinter der Netzhaut im Sommer golden, im Winter tiefblau. In der langen Polarnacht steigt der Druck im Auge, die Fasern dieser Schicht rücken enger zusammen und reflektieren blaues Licht. Das Auge wird lichtempfindlicher, sieht dafür etwas unschärfer.',
+    src: [['Stokkan et al. 2013 · Proceedings of the Royal Society B (UiT Tromsø)', 'https://en.uit.no/go/target/355402']],
+    rel: ['a31', 'h39'] },
+  { id: 'a33', cat: 'allg', title: 'Jingle Bells im Weltall',
+    text: 'Im Dezember 1965 meldete die Crew von Gemini 6 ein seltsames Objekt und spielte dann „Jingle Bells“: Wally Schirra auf einer Mundharmonika, Tom Stafford mit Glöckchen. Es war das erste Musikstück, das im Weltall auf Instrumenten gespielt wurde. 1967 schenkten die beiden die Instrumente dem Smithsonian-Luftfahrtmuseum in Washington.',
+    src: [['Smithsonian National Air and Space Museum', 'https://airandspace.si.edu/stories/editorial/tom-staffords-jingle-bells-and-wally-schirras-harmonica']],
+    rel: ['a23', 'a24'] },
+  { id: 'a34', cat: 'allg', title: 'Fest, flüssig und gasförmig zugleich',
+    text: 'Bei 0,01 Grad Celsius und einem Druck von rund 611 Pascal, das ist weniger als ein Hundertstel des normalen Luftdrucks, existieren Wasser, Eis und Wasserdampf gleichzeitig im Gleichgewicht. Dieser besondere Zustand heißt Tripelpunkt.',
+    src: [['Wikipedia · Tripelpunkt', WP('Tripelpunkt')]],
+    rel: ['a16'] },
+  { id: 'a35', cat: 'allg', title: 'Oxford ist älter als die Azteken',
+    text: 'In Oxford wurde nachweislich schon 1096 gelehrt. Die Azteken gründeten ihre Hauptstadt Tenochtitlan erst 1325, und das Aztekenreich führt seine Wurzeln auf das Jahr 1428 zurück. Die Universität ist also älter als das Reich der Azteken.',
+    src: [['Wikipedia · University of Oxford', 'https://en.wikipedia.org/wiki/University_of_Oxford'], ['Wikipedia · Aztekenreich', WP('Aztekenreich')]],
+    rel: ['a4', 'a12'] },
+  { id: 'x1', cat: 'allg', title: 'Ein Lied mit Gitarre',
+    text: '„Stille Nacht, heilige Nacht“ wurde am 24. Dezember 1818 in der Kirche St. Nikolaus in Oberndorf bei Salzburg zum ersten Mal gesungen, begleitet nur von einer Gitarre. Heute gibt es das Lied in Hunderten Sprachen und Dialekten, und Österreich führt es als immaterielles Kulturerbe.',
+    src: [['Wikipedia · Stille Nacht, heilige Nacht', WP('Stille_Nacht,_heilige_Nacht')]],
+    rel: ['h15', 'a33'] }
+];
+
+/* Welches Häppchen in welcher Zimtschnecke (1 bis 36) */
+const PLAN = {
+  psyche: ['p28','p13','p3','p30','p15','p20','p32','p2','p25','p16','p4','p31','p17','p19','p33','p11','p14','p26','p6','p29','p21','p5','p35','p1','p23','p27','p10','p7','p34','p22','p18','p36','p12','p24','p8','p9'],
+  phys:   ['k6','k13','h8','k17','k2','k30','k4','k16','k12','k21','k7','k24','k3','k31','k19','k8','k20','k14','k25','k5','k26','k29','h12','k22','k15','k9','k18','k32','k10','k33','k1','k27','k23','k28','h13','k11'],
+  hirn:   ['h1','h22','h9','h32','h14','h24','h2','h23','h28','h11','h39','h21','h4','h25','h31','h3','h18','h29','h16','h19','h30','h10','h36','h26','h5','h37','h34','h6','h17','h20','h7','h38','h33','h35','h27','h15'],
+  allg:   ['a6','a1','a19','a3','a17','a2','a18','a5','a26','a9','a15','a4','a16','a24','a10','a27','a8','a22','a20','a11','a28','a21','a13','a25','a7','a31','a34','a33','a12','a23','a35','a14','a30','a32','a29','x1']
+};
+
+/* ================= Beleg für den Zimtschnecken-Gedanken ================= */
+const LEHR = [
+  { id: 'z6', title: 'Ein Feiertag nur für Zimtschnecken',
+    src: [['Visit Sweden · Cinnamon Bun Day', 'https://press.visitsweden.com/2024-09-27-Swedens-Sweetest-Tradition-10-million-Eaten-on-Cinnamon-Bun-Day'],
+          ['SVT Nyheter · Kanelbullens egna dag', 'https://www.svt.se/nyheter/lokalt/varmland/kanelbullens-egna-dag']] }
+];
+
+/* ================= Zum Schmunzeln (alles frei erfunden) ================= */
+const POEMS = {
+  eroeffnung: 'Große Eröffnung!\nDie Zimtschnecken-Fabrik hat heute ihre Tore geöffnet.\nBelegschaft: eine Zimtschnecke.\nProduktionsziel: 36 Zimtschnecken bis Heiligabend.\nLeitung der Qualitätskontrolle: du.',
+  befund: 'Physiotherapeutischer Befund einer Zimtschnecke:\nstark eingerollt, Haltung trotzdem tadellos.\nEmpfehlung: keine Therapie, nur Kaffee.',
+  montag: 'Ob Montag, Regen, viel zu tun,\nob keine Zeit zum Ausruhn:\nEin Duft von Zimt im Treppenhaus,\nund schon sieht alles besser aus.',
+  kontakt: 'Kontaktanzeige:\nSüße Zimtschnecke, gut gerollt, warmherzig, leicht klebrig, sucht Kaffee für gemeinsame Pausen.\nFranzbrötchen zwecklos.',
+  sechs: 'Erst Training um sechs, die Hantel, der Schweiß,\ndann Kaffee und Zimt, noch ofenheiß.\nSo geht ein Morgen, so darf er sein:\nerst stark, dann süß, dann Sonnenschein.',
+  rose: 'Die Rose sprach zur Zimtschnecke:\n„Wir zwei sind ein Gedicht.“\nDie Schnecke rollte sich verlegen\nund duftete ganz schlicht.',
+  durchsage: 'Durchsage aus der Fabrikhalle:\nWer hat Zimtschnecke Nr. 7 angeknabbert?\nBitte melden. Es gibt keine Strafe, nur Neid.',
+  ecke: 'Ein Franzbrötchen sprach zur Schnecke:\n„Du bist rund, ich bin ’ne Ecke.“\nDa sprach die Schnecke ganz entspannt:\n„Wir sind beide weltbekannt.“',
+  haiku: 'Zimtschnecken-Haiku:\nSo schön eingerollt.\nIch wollte nur kurz gucken.\nJetzt ist sie weg. Huch.',
+  garten: 'Draußen ist der Garten kahl,\ndrinnen blüht’s zum ersten Mal:\nein Sträußchen Tulpen, rot und klein,\ndazu ein Zimtduft, das muss sein.',
+  advent: 'Erster Advent in der Fabrik.\nEine Kerze brennt, die Zimtschnecken stehen andächtig drum herum.\nAb jetzt gilt: jeden Sonntag eine Kerze mehr, jeden Tag eine Zimtschnecke weniger.',
+  november: 'Zimt im Kaffee, Zimt im Tee,\nZimt beim Lesen auf dem Kanapee.\nWo er auftaucht, wird es warm,\nselbst ein Novembertag hat Charme.',
+  dezember: 'Zimt-Wissenschaft:\nIm Dezember steigt der Zimtgehalt der Luft um 400 Prozent.\nGemessen mit der Nase, auf jedem Weihnachtsmarkt.',
+  wetter: 'Zimtschnecken-Wetterbericht:\nMorgens leicht bewölkt mit Puderzucker, mittags vereinzelte Zimtschauer, nachmittags gute Aussichten auf Kaffee.\nDie Laune: durchgehend sonnig.',
+  stelle: 'Stellenanzeige der Fabrik:\nGesucht wird eine Vorkosterin in Vollzeit.\nAnforderungen: Liebe zu Zimt, Geduld beim Abkühlen, Talent zum Schwärmen.\nWir bieten: Krümel, so viele du willst.',
+  barbara: 'Barbaratag.\nEin Kirschzweig steht im Glas und wartet geduldig aufs Blühen.\nDie Zimtschnecke daneben wartet auf gar nichts, sie ist schon fertig.\nAngeberin.',
+  kalk: 'Die Schnecke hat kein Haus aus Kalk,\nsie hat ein Haus aus Teig und Zimt.\nUnd wer es sieht, der lächelt still:\nDas schönste Haus, ganz bestimmt.',
+  nikolaus: 'Nikolaus-Meldung aus der Fabrik:\nHeute Nacht wurde ein Mann mit rotem Mantel und weißem Bart in der Backstube gesichtet.\nEr hat nichts gestohlen. Nur probiert.\nSehr viel probiert.',
+  horoskop: 'Blumen-Horoskop für heute:\nTulpen raten zu Geduld, Rosen zu Komplimenten,\nund Sonnenblumen sagen nur: Kopf hoch, dahin, wo das Licht ist.',
+  beipack: 'Beipackzettel Zimtschnecke:\nZu Risiken und Nebenwirkungen fragen Sie Ihre Bäckerei.\nHäufige Nebenwirkungen: gute Laune, Krümel auf dem Pulli, spontanes Lächeln.',
+  schal: 'Die Zimtschnecke trägt jetzt einen Schal.\nSie sagt: „Im Dezember ist das ganz normal.“\nDie Kerze fragt: „Und was ist mit mir?“\n„Du bist heiß genug“, sagt die Schnecke zu ihr.',
+  rotation: 'Neue Übung aus der Fabrik-Physio:\ndie Zimtschnecken-Rotation.\nLangsam einrollen, kurz halten, genüsslich wieder ausrollen.\nDrei Sätze. Dazwischen Kaffee.',
+  peak: 'Studie des Instituts für angewandte Gebäckkunde:\nWer eine Zimtschnecke von außen nach innen isst, hebt sich das Beste bis zum Schluss auf.\nPeak-End-Regel, nur leckerer.',
+  anleitung: 'Bedienungsanleitung Zimtschnecke, Kurzfassung:\n1. Anschauen.\n2. Riechen.\n3. Feststellen, dass 1 und 2 nicht reichen.',
+  markt: 'Eilmeldung vom Weihnachtsmarkt:\nZimtstern und Zimtschnecke wurden gemeinsam gesichtet.\nFachleute sprechen von der süßesten Allianz des Jahres.',
+  limerick: 'Es lebte ein Krokus in Bern,\nder hatte den Zimt so gern.\nEr streute ihn munter\naufs Beet und darunter,\nnun riecht man den Garten von fern.',
+  briefe: 'Die Kanelbulle aus Stockholm schrieb\nans Franzbrötchen in Hamburg: „Lieb!“\nDas Franzbrötchen schrieb froh zurück:\n„Mit Zimt ist jeder Tag ein Stück Glück.“',
+  qualitaet: 'Bericht der Qualitätskontrolle:\nZimtschnecke Nr. 28 wurde gründlich geprüft.\nErgebnis: einwandfrei.\nLeider ist jetzt nichts mehr zum Prüfen übrig.',
+  woche: 'Die Woche ist lang, der Tag ist grau,\ndie Zimtschnecke weiß das genau.\nSie rollt sich ein und flüstert leise:\n„Iss mich jetzt, das ist sehr weise.“',
+  klatsch: 'Neues aus dem Blumenladen:\nDie Tulpe behauptet, die Rose sei eingebildet.\nDie Rose sagt, sie sei nur gut erzogen.\nDer Kaktus hält sich raus. Wie immer.',
+  neuro: 'Neurologischer Befund nach einer Zimtschnecke:\nGeruchssinn hervorragend.\nBelohnungssystem hochaktiv.\nWillenskraft vorübergehend nicht nachweisbar.',
+  inventur: 'Inventur in der Fabrik:\nZimt: reichlich. Butter: ausreichend. Zucker: großzügig.\nZimtschnecken: eine weniger, als im Plan steht.\nDie Ermittlungen laufen.',
+  sonnenwende: 'Längste Nacht des Jahres.\nDie Fabrik macht das Beste draus: mehr Dunkelheit heißt mehr Zeit für Kerzen, Kuscheldecke und Zimtschnecken.\nAb morgen wird es wieder heller. Aber nicht weniger lecker.',
+  ofen: 'Zimt-Weisheit des Tages:\nAuch die beste Zimtschnecke braucht ihre Zeit im Ofen.\nGutes darf dauern.\nAußer beim Essen. Da darf es schnell gehen.',
+  morgen: 'Nur noch eine Zimtschnecke bis Heiligabend!\nDie Öfen glühen, die Fabrik läuft auf Hochtouren,\nund der Weihnachtsmann hat schon zweimal angerufen, ob noch was übrig ist.',
+  xmas: 'Heiligabend, Kerzenschein,\nZimtduft zieht in jede Stube ein.\nDie Fabrik flüstert heut ganz leise:\nFrohe Weihnachten, auf süße Weise.'
+};
+/* Zimtschnecke 1 bis 36 */
+const CORNER = [
+  'eroeffnung', 'befund', 'montag', 'kontakt', 'sechs', 'rose',
+  'durchsage', 'ecke', 'haiku', 'garten', 'advent', 'november',
+  'dezember', 'wetter', 'stelle', 'barbara', 'kalk', 'nikolaus',
+  'horoskop', 'beipack', 'schal', 'rotation', 'peak', 'anleitung',
+  'markt', 'limerick', 'briefe', 'qualitaet', 'woche', 'klatsch',
+  'neuro', 'inventur', 'sonnenwende', 'ofen', 'morgen', 'xmas'
+];
+
+/* ================= Positive Gedanken ================= */
+/* Genau ein Gedanke pro Zimtschnecke (1 bis 36), jeweils mit Beleg-Verweis */
+const THOUGHTS = [
+  ['p28', 'Die erste Zimtschnecke ist da, ein kleiner Neuanfang. Solche Wendepunkte im Kalender geben nachweislich Schwung für gute Vorhaben. Schön, dass du da bist.'],
+  ['p32', 'Gute Nachricht für heute: Die Menschen, mit denen du sprichst, mögen dich sehr wahrscheinlich mehr, als du glaubst. Das ist sogar erforscht.'],
+  ['h15', 'Dein Lieblingslied setzt im Gehirn Dopamin frei, schon die Vorfreude auf die beste Stelle. Gönn dir heute eins, gern laut.'],
+  ['p3', 'Gute Nachricht: Andere bemerken unsere kleinen Pannen viel seltener, als wir denken. Du darfst heute also ganz entspannt du selbst sein.'],
+  ['h13', 'Wer um sechs Uhr schon trainiert hat, darf heute stolz sein: Bewegung wirkt nachweislich wie Medizin, für Körper und Kopf.'],
+  ['p30', 'Eine kleine Freundlichkeit kommt bei anderen größer an, als man denkt. Und wer sie bekommt, ist danach oft selbst großzügiger.'],
+  ['p9', 'Lachen steckt an, am leichtesten unter Menschen, die sich kennen. Starte heute ruhig eine kleine Lach-Epidemie.'],
+  ['z6', 'Heute ist ein guter Tag für eine Zimtschnecke. In Schweden gibt es dafür sogar einen eigenen Feiertag.'],
+  ['p14', 'Herzklopfen vor etwas Wichtigem ist ein gutes Zeichen: Dein Körper stellt dir gerade Extra-Energie bereit.'],
+  ['p15', 'Wofür bist du heute dankbar? Wer sich das regelmäßig notiert, blickt nachweislich optimistischer aufs Leben.'],
+  ['p1', 'Erster Advent. Was uns vertraut ist, mögen wir meist besonders gern. Ein schöner Grund, liebgewonnene Rituale zu pflegen.'],
+  ['k5', 'Fortschritt ist oft größer, als man sieht: Sogar die Seite, die du gar nicht trainierst, wird ein bisschen stärker.'],
+  ['p33', 'Ehrlich zu zeigen, was man fühlt, wirkt auf andere meistens mutig und sympathisch. Du darfst heute ganz du selbst sein.'],
+  ['p20', 'Ein Spaziergang ist ein kleiner Ideen-Booster: Beim Gehen sprudeln messbar mehr kreative Einfälle als im Sitzen.'],
+  ['p2', 'Ein kleiner Patzer macht kompetente Menschen sogar sympathischer. Du darfst heute also ruhig mal Kaffee verschütten.'],
+  ['h14', 'Deine Hände können mehr, als Muskeln zu lockern: Für sanfte Berührung hat die Haut sogar eigene Nervenfasern.'],
+  ['p13', 'Vorfreude ist eine Superkraft: Wer sich vor etwas Großem sagt „Ich freu mich drauf“, schneidet nachweislich besser ab.'],
+  ['p17', 'Nikolaustag. Mach heute jemandem eine kleine Freude: Geld für andere auszugeben macht nachweislich glücklicher, als es für sich selbst auszugeben.'],
+  ['p16', 'Heute Abend drei schöne Dinge aufschreiben, die passiert sind, und warum. So einfach, und in einer Studie hob es die Stimmung über Monate.'],
+  ['p29', 'Schau heute mal nach oben, in die Bäume oder in den Himmel. Schon eine Minute Staunen macht nachweislich ein bisschen großzügiger.'],
+  ['k7', 'Es ist nie zu spät: Menschen um die 90 haben ihre Beinkraft in acht Wochen mehr als verdoppelt.'],
+  ['p23', 'Gemeinsames Lachen hebt die Schmerzgrenze. Lachen ist also auch ein kleines bisschen Physiotherapie.'],
+  ['p19', 'Freundlich zu sich selbst sein lohnt sich: Wer nach einem Patzer verständnisvoll mit sich umgeht, ist danach sogar motivierter.'],
+  ['h16', 'Ein Spaziergang im Grünen macht den Kopf nachweislich freier. Der Park um die Ecke zählt.'],
+  ['p11', 'Bleib neugierig: Wer gespannt auf etwas ist, merkt sich sogar Nebensächliches besser.'],
+  ['p6', 'Was man selbst aufbaut, schätzt man mehr, sagt der IKEA-Effekt. Bau dir heute einen Tag, der dir gefällt.'],
+  ['h11', 'Dein Gehirn kann jeden Tag Neues lernen: Schon drei Monate Jonglieren verändern es messbar. Vielleicht ist heute ein guter Tag, etwas auszuprobieren.'],
+  ['p10', 'Kleine Schritte zählen. Fortschritt bei etwas Sinnvollem macht nachweislich gute Laune, frag mal deine Patienten.'],
+  ['p34', 'Erlebnisse machen oft glücklicher als Dinge. Vielleicht ein schöner Gedanke für die Weihnachtsgeschenke.'],
+  ['k8', 'Was du einmal aufgebaut hast, ist nicht einfach weg. Muskeln haben offenbar eine Art Gedächtnis.'],
+  ['p4', 'Gönn deinem Tag ein schönes Ende. Laut Peak-End-Regel prägt gerade das Ende, wie wir uns später an ihn erinnern.'],
+  ['p21', 'Menschen, die dir guttun, halten dich nachweislich gesund. Ruf heute ruhig mal jemanden an, den du magst.'],
+  ['a30', 'Ab heute werden die Tage wieder länger. Jeden Tag ein bisschen mehr Licht.'],
+  ['p24', 'Umarmungen tun gut: Wer sich unterstützt fühlt und oft umarmt wird, war in einer Studie selbst in stressigen Zeiten besser vor Erkältungen geschützt. Also gern großzügig verteilen.'],
+  ['p35', 'Ein paar ehrliche Zeilen Dank freuen andere viel mehr, als man glaubt. Perfekt formuliert müssen sie nicht sein.'],
+  ['x1', 'Heute ist Heiligabend. Ein Lied, das 1818 mit einer einzigen Gitarre begann, wird heute in Hunderten Sprachen gesungen. Kleine Dinge können sehr weit tragen.']
+];
+
+/* ================= Zimtschnecke des Tages ================= */
+const LOOK = [
+  ['bow','sparkle','open','icing'], ['glasses','dot','smile',''], ['','happy','smile','sprinkles'], ['sun','happy','open',''],
+  ['band','dot','open',''], ['flower:#e5486b','happy','smile',''], ['heart','sparkle','smile','icing'], ['leaf','wink','smile',''],
+  ['scarf:#c0392b','dot','smile',''], ['flower:#e8742a','sparkle','smile',''], ['candle','happy','smile','icing'], ['headphones','happy','open',''],
+  ['earmuffs','dot','smile',''], ['','wink','smile','icing'], ['beret','dot','smile',''], ['branch','sparkle','open',''],
+  ['flower:#d9304f','happy','smile','sprinkles'], ['santa','happy','open',''], ['flower:#f2b705','wink','open',''], ['poinsettia','dot','smile','icing'],
+  ['scarf:#2f7d5b','happy','smile',''], ['band','sparkle','open','sprinkles'], ['star','dot','smile',''], ['bee','sparkle','smile',''],
+  ['heart','happy','smile','icing'], ['flower:#8e6bd1','wink','smile',''], ['beanie','dot','open',''], ['glasses','happy','smile',''],
+  ['snow','sparkle','open','icing'], ['christrose','dot','smile',''], ['party','wink','open','sprinkles'], ['laurel','dot','smile',''],
+  ['sun','sparkle','open',''], ['candle','happy','smile',''], ['beret','dot','smile','icing'], ['santa+star','sparkle','open','sprinkles']
+];
+const ACC_NAME = {
+  '': 'Streuseln', bow: 'Schleife', glasses: 'Brille', sun: 'Sonne', band: 'Stirnband', heart: 'Herz', flower: 'Blume', leaf: 'Blatt',
+  scarf: 'Schal', candle: 'Kerze', headphones: 'Kopfhörern', earmuffs: 'Ohrenschützern', beret: 'Baskenmütze', branch: 'Blütenzweig',
+  santa: 'Nikolausmütze', poinsettia: 'Weihnachtsstern', party: 'Partyhut', star: 'Stern', bee: 'Biene', beanie: 'Wollmütze',
+  orchid: 'Vanilleblüte', snow: 'Schneeflocken', christrose: 'Christrose', laurel: 'Lorbeerkranz', 'santa+star': 'Weihnachtsmütze und Stern'
+};
+
+function petals(cx, cy, r, n, color, center) {
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2 - Math.PI / 2;
+    s += '<circle cx="' + (cx + Math.cos(a) * r).toFixed(1) + '" cy="' + (cy + Math.sin(a) * r).toFixed(1) + '" r="' + (r * .78).toFixed(1) + '" fill="' + color + '"/>';
+  }
+  return s + '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r * .62).toFixed(1) + '" fill="' + (center || '#f6c443') + '"/>';
+}
+function starPath(cx, cy, R, r, n) {
+  let d = '';
+  for (let i = 0; i < n * 2; i++) {
+    const a = i / (n * 2) * Math.PI * 2 - Math.PI / 2;
+    const rr = i % 2 ? r : R;
+    d += (i ? 'L' : 'M') + (cx + Math.cos(a) * rr).toFixed(1) + ' ' + (cy + Math.sin(a) * rr).toFixed(1);
+  }
+  return d + 'Z';
+}
+function accessory(key) {
+  const [k, col] = key.split(':');
+  switch (k) {
+    case 'bow': return '<path d="M78 30 L92 22 L92 40 Z M78 30 L64 22 L64 40 Z" fill="#e86a92"/><circle cx="78" cy="31" r="4.5" fill="#c94b75"/>';
+    case 'glasses': return '<g fill="none" stroke="#3b2416" stroke-width="2.6"><circle cx="47" cy="63" r="9"/><circle cx="73" cy="63" r="9"/><path d="M56 62 q4 -3 8 0"/></g>';
+    case 'sun': return '<g transform="translate(26 26)"><g stroke="#f2a71b" stroke-width="3" stroke-linecap="round">' + [0,1,2,3,4,5,6,7].map(i => { const a = i * Math.PI / 4; return '<path d="M' + (Math.cos(a) * 11).toFixed(1) + ' ' + (Math.sin(a) * 11).toFixed(1) + 'L' + (Math.cos(a) * 16).toFixed(1) + ' ' + (Math.sin(a) * 16).toFixed(1) + '"/>'; }).join('') + '</g><circle r="8" fill="#f6c443"/></g>';
+    case 'band': return '<path d="M24 50 Q60 30 96 50 L96 58 Q60 38 24 58 Z" fill="#d94545"/><path d="M40 44 L40 52 M60 39 L60 47 M80 44 L80 52" stroke="#fff" stroke-width="2.4"/>';
+    case 'heart': return '<path d="M92 26 c-4 -7 -14 -3 -10 5 l10 10 l10 -10 c4 -8 -6 -12 -10 -5z" fill="#e5486b"/>';
+    case 'flower': return petals(30, 32, 7, 5, col || '#e5486b');
+    case 'leaf': return '<path d="M60 30 q-14 -14 -2 -24 q12 10 2 24z" fill="#4f9a55"/><path d="M60 30 L58 10" stroke="#2f6b37" stroke-width="1.6" fill="none"/>';
+    case 'scarf': return '<path d="M26 92 Q60 108 94 92 L94 101 Q60 117 26 101 Z" fill="' + col + '"/><path d="M74 100 l4 18 l9 -2 l-4 -18z" fill="' + col + '"/><path d="M40 98 v6 M52 101 v6 M64 102 v6" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>';
+    case 'candle': return '<rect x="98" y="62" width="10" height="34" rx="2" fill="#f4efe6" stroke="#d8cfc0"/><path d="M103 62 v-5" stroke="#3b2416" stroke-width="1.5"/><path d="M103 44 q6 7 0 13 q-6 -6 0 -13z" fill="#f6b13b"/>';
+    case 'headphones': return '<path d="M26 60 Q26 20 60 20 Q94 20 94 60" fill="none" stroke="#3a3a48" stroke-width="5"/><rect x="18" y="54" width="12" height="20" rx="5" fill="#6447bf"/><rect x="90" y="54" width="12" height="20" rx="5" fill="#6447bf"/>';
+    case 'earmuffs': return '<path d="M26 58 Q26 22 60 22 Q94 22 94 58" fill="none" stroke="#b3304f" stroke-width="4"/><circle cx="24" cy="62" r="10" fill="#f3d2dc"/><circle cx="96" cy="62" r="10" fill="#f3d2dc"/>';
+    case 'beret': return '<ellipse cx="64" cy="32" rx="30" ry="10" fill="#2a3550" transform="rotate(-10 64 32)"/><path d="M66 22 v-6" stroke="#2a3550" stroke-width="3" stroke-linecap="round"/>';
+    case 'branch': return '<path d="M14 40 Q36 26 58 30" stroke="#7a4a2a" stroke-width="3" fill="none" stroke-linecap="round"/>' + petals(26, 33, 4, 5, '#f7c6d6', '#e86a92') + petals(46, 27, 4.5, 5, '#f7c6d6', '#e86a92');
+    case 'santa': return '<path d="M30 40 Q58 4 92 36 Z" fill="#d22f3c"/><rect x="26" y="34" width="70" height="10" rx="5" fill="#fff"/><circle cx="94" cy="32" r="6" fill="#fff"/>';
+    case 'poinsettia': return '<path d="' + starPath(30, 32, 15, 5, 6) + '" fill="#d22f3c"/><circle cx="30" cy="32" r="3.5" fill="#f6c443"/>';
+    case 'party': return '<path d="M48 38 L62 9 L76 38 Z" fill="#2a62ad"/><path d="M53 28 L71 28 M57 19 L67 19" stroke="#f6c443" stroke-width="3"/><circle cx="62" cy="8" r="4" fill="#e5486b"/>';
+    case 'star': return '<path d="' + starPath(94, 26, 11, 4.6, 5) + '" fill="#f6c443"/>';
+    case 'bee': return '<g transform="translate(96 28) rotate(-15)"><ellipse rx="9" ry="6.5" fill="#f6c443"/><path d="M-3 -6 v12 M3 -6 v12" stroke="#2b2b2b" stroke-width="2.4"/><ellipse cx="-2" cy="-9" rx="5" ry="3.5" fill="#dbeefe" opacity=".9"/><ellipse cx="4" cy="-9" rx="5" ry="3.5" fill="#dbeefe" opacity=".9"/></g>';
+    case 'beanie': return '<path d="M24 46 Q60 -4 96 46 Z" fill="#2f7d5b"/><rect x="22" y="40" width="76" height="11" rx="5" fill="#25624a"/><circle cx="60" cy="12" r="8" fill="#f3efe4"/>';
+    case 'orchid': return petals(30, 32, 7, 5, '#f2ecb8', '#c9b35a');
+    case 'snow': return ['M22 26','M98 30','M100 84'].map(p => { const [x, y] = p.slice(1).split(' ').map(Number); return '<g stroke="#8fb8e8" stroke-width="2" stroke-linecap="round"><path d="M' + (x - 6) + ' ' + y + 'H' + (x + 6) + 'M' + (x - 3) + ' ' + (y - 5.2) + 'L' + (x + 3) + ' ' + (y + 5.2) + 'M' + (x + 3) + ' ' + (y - 5.2) + 'L' + (x - 3) + ' ' + (y + 5.2) + '"/></g>'; }).join('');
+    case 'christrose': return petals(30, 32, 7, 5, '#fbfaf7', '#e7c54a').replace(/<circle/, '<circle stroke="#d9d2c4" stroke-width=".8"');
+    case 'laurel': return '<g fill="#5d9b4a">' + [0,1,2,3].map(i => '<ellipse cx="' + (38 + i * 7) + '" cy="' + (40 - i * 4) + '" rx="6" ry="3" transform="rotate(' + (-35 + i * 8) + ' ' + (38 + i * 7) + ' ' + (40 - i * 4) + ')"/><ellipse cx="' + (82 - i * 7) + '" cy="' + (40 - i * 4) + '" rx="6" ry="3" transform="rotate(' + (35 - i * 8) + ' ' + (82 - i * 7) + ' ' + (40 - i * 4) + ')"/>').join('') + '</g>';
+    case 'santa+star': return accessory('santa') + '<path d="' + starPath(16, 22, 9, 3.8, 5) + '" fill="#f6c443"/>';
+    default: return '';
+  }
+}
+function spiral(rot) {
+  const turns = 2.4, steps = 96;
+  let d = '';
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const a = rot + t * turns * Math.PI * 2;
+    const r = 4 + 30 * t;
+    d += (i ? 'L' : 'M') + (60 + r * Math.cos(a)).toFixed(1) + ' ' + (68 + r * Math.sin(a) * .9).toFixed(1);
+  }
+  return d;
+}
+function eyes(kind) {
+  const ink = '#3b2416';
+  const dot = (x) => '<circle cx="' + x + '" cy="63" r="4.2" fill="' + ink + '"/>';
+  const shine = (x) => dot(x) + '<circle cx="' + (x + 1.5) + '" cy="61.4" r="1.5" fill="#fff"/>';
+  const arc = (x) => '<path d="M' + (x - 5) + ' 65 q5 -7 10 0" fill="none" stroke="' + ink + '" stroke-width="3" stroke-linecap="round"/>';
+  if (kind === 'happy') return arc(47) + arc(73);
+  if (kind === 'wink') return shine(47) + arc(73);
+  if (kind === 'sparkle') return shine(47) + shine(73);
+  return dot(47) + dot(73);
+}
+function mouth(kind) {
+  if (kind === 'open') return '<path d="M52 74 q8 11 16 0 z" fill="#5a2a1a"/><path d="M56 78 q4 3.5 8 0" fill="#ef8f9f"/>';
+  return '<path d="M53 74 q7 7 14 0" fill="none" stroke="#3b2416" stroke-width="3" stroke-linecap="round"/>';
+}
+function sprinkles(seed) {
+  const cols = ['#e5486b', '#f6c443', '#55c7bb', '#86b4f2', '#ae98f2'];
+  let s = '';
+  for (let i = 0; i < 9; i++) {
+    const a = (seed * 37 + i * 73) % 360 * Math.PI / 180;
+    const r = 18 + (i * 11 + seed * 7) % 16;
+    const x = 60 + Math.cos(a) * r, y = 66 + Math.sin(a) * r * .85;
+    if (y > 56 && y < 82 && x > 38 && x < 82) continue;
+    s += '<rect x="' + (x - 3).toFixed(1) + '" y="' + (y - 1.2).toFixed(1) + '" width="6" height="2.4" rx="1.2" fill="' + cols[i % cols.length] + '" transform="rotate(' + ((i * 47 + seed * 13) % 180) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')"/>';
+  }
+  return s;
+}
+function mascot(door) {
+  const [acc, e, m, extra] = LOOK[(door - 1) % LOOK.length];
+  const accName = acc ? (ACC_NAME[acc.split(':')[0]] || '') : (extra === 'icing' ? 'Zuckerguss' : 'Streuseln');
+  const label = 'Zimtschnecke mit ' + accName;
+  const rot = (door * 0.9) % (Math.PI * 2);
+  let s = '<svg viewBox="0 0 120 120" role="img" aria-label="' + label + '" xmlns="http://www.w3.org/2000/svg">';
+  s += '<ellipse cx="60" cy="108" rx="34" ry="5" fill="#000" opacity=".08"/>';
+  s += '<ellipse cx="60" cy="68" rx="42" ry="38" fill="#e7ad68" stroke="#9a5626" stroke-width="3"/>';
+  s += '<path d="' + spiral(rot) + '" fill="none" stroke="#b86d32" stroke-width="5" stroke-linecap="round" opacity=".75"/>';
+  if (extra === 'icing') s += '<path d="M30 46 q7 9 14 0 q7 9 14 0 q7 9 14 0 q7 9 14 0" fill="none" stroke="#fffaf2" stroke-width="5" stroke-linecap="round" opacity=".95"/>';
+  if (extra === 'sprinkles') s += sprinkles(door);
+  s += '<ellipse cx="42" cy="75" rx="6" ry="4" fill="#f08aa5" opacity=".55"/><ellipse cx="78" cy="75" rx="6" ry="4" fill="#f08aa5" opacity=".55"/>';
+  s += '<ellipse cx="60" cy="70" rx="21" ry="15" fill="#e7ad68" opacity=".55"/>';
+  s += eyes(e) + mouth(m);
+  s += accessory(acc);
+  return s + '</svg>';
+}
+
+/* ================= Grundlagen ================= */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+const store = (() => {
+  let ok = false;
+  try { localStorage.setItem('zs2-test', '1'); localStorage.removeItem('zs2-test'); ok = true; } catch (e) { ok = false; }
+  const mem = {};
+  return {
+    get(k, d) {
+      if (ok) { try { const v = localStorage.getItem(k); if (v !== null) return JSON.parse(v); } catch (e) {} }
+      return k in mem ? mem[k] : d;
+    },
+    set(k, v) {
+      mem[k] = v;
+      if (ok) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+    }
+  };
+})();
+
+const BYID = {};
+FACTS.forEach(f => { BYID[f.id] = f; });
+const LBYID = {};
+LEHR.forEach(l => { LBYID[l.id] = l; });
+const DOOR_OF = {};
+ORDER.forEach(c => PLAN[c].forEach((id, i) => { DOOR_OF[id] = i + 1; }));
+
+const DAYS = 36;
+const START = new Date(2026, 10, 19);
+function midnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+function doorDate(v) { return new Date(2026, 10, 18 + v); }
+const now = new Date();
+const IDX = Math.round((midnight(now) - START) / 864e5);
+const PRE = IDX < 0;
+const AFTER = IDX >= DAYS;
+const TODAY = Math.max(1, Math.min(DAYS, IDX + 1));
+const fmtLong = d => d.toLocaleDateString('de-DE', { weekday: 'long', day: 'numeric', month: 'long' });
+const fmtDayMonth = d => d.toLocaleDateString('de-DE', { day: 'numeric', month: 'long' });
+const fmtShort = d => d.getDate() + '.' + (d.getMonth() + 1) + '.';
+
+let opened = new Set(store.get('zs2-open', []));
+let seen = new Set(store.get('zs2-seen', []).filter(id => id in BYID));
+let view = TODAY;
+function markOpened(v) {
+  if (opened.has(v)) return;
+  opened.add(v);
+  store.set('zs2-open', [...opened]);
+}
+
+/* ================= Kopfzeile ================= */
+function renderMeta() {
+  let t;
+  if (PRE) {
+    const n = -IDX;
+    t = n === 1 ? 'Morgen kommt die erste Zimtschnecke aus dem Ofen' : 'Noch ' + n + ' Tage bis zur ersten Zimtschnecke';
+  } else if (AFTER) {
+    t = 'Alle 36 Zimtschnecken sind gebacken · Frohe Weihnachten';
+  } else {
+    const left = DAYS - TODAY;
+    t = 'Zimtschnecke ' + TODAY + ' von 36 · ' + (left === 0 ? 'Heute ist Heiligabend' : left === 1 ? 'Morgen ist Heiligabend' : 'noch ' + left + ' Tage bis Heiligabend');
+  }
+  $('meta').textContent = t;
+}
+
+/* ================= Die Zimtschnecke zum Vernaschen ================= */
+function bigSpiral() {
+  const turns = 2.6, steps = 120;
+  let d = '';
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const a = 0.6 + t * turns * Math.PI * 2;
+    const r = 6 + 50 * t;
+    d += (i ? 'L' : 'M') + (110 + r * Math.cos(a)).toFixed(1) + ' ' + (105 + r * Math.sin(a)).toFixed(1);
+  }
+  return d;
+}
+function rollSVG(id) {
+  return '<svg viewBox="0 0 220 200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+    '<defs><mask id="' + id + '" maskUnits="userSpaceOnUse" x="-20" y="-20" width="260" height="240"><rect x="-20" y="-20" width="260" height="240" fill="#fff"/><g class="bitemarks"></g></mask></defs>' +
+    '<g class="steam"><path d="M84 30 q-7 -8 0 -16 q7 -8 0 -16"/><path d="M110 24 q-7 -8 0 -16 q7 -8 0 -16"/><path d="M136 30 q-7 -8 0 -16 q7 -8 0 -16"/></g>' +
+    '<ellipse class="plate" cx="110" cy="174" rx="98" ry="17"/>' +
+    '<g class="roll">' +
+      '<ellipse cx="110" cy="168" rx="60" ry="8" fill="#000" opacity=".12"/>' +
+      '<g mask="url(#' + id + ')">' +
+        '<circle cx="110" cy="105" r="66" fill="#e7ad68" stroke="#9a5626" stroke-width="4"/>' +
+        '<path d="' + bigSpiral() + '" fill="none" stroke="#b86d32" stroke-width="7" stroke-linecap="round" opacity=".8"/>' +
+        '<path d="M60 76 q12.5 15 25 0 q12.5 15 25 0 q12.5 15 25 0 q12.5 15 25 0" fill="none" stroke="#fffaf2" stroke-width="7" stroke-linecap="round"/>' +
+      '</g>' +
+    '</g></svg>';
+}
+
+function showPre() {
+  $('pre').hidden = false;
+  $('pre-oven').innerHTML = rollSVG('m-pre');
+  const n = -IDX;
+  $('pre-text').textContent = 'Die erste Zimtschnecke kommt am Donnerstag, 19. November, aus dem Ofen. ' + (n === 1 ? 'Also schon morgen.' : 'Noch ' + n + ' Mal schlafen.');
+}
+
+const BITE_ANG = [-35, 200, 100];
+const BTN_TEXT = ['Vernaschen', 'Noch ein Bissen', 'Und der letzte'];
+const LEFT_TEXT = ['3 Bissen', '2 Bissen übrig', '1 Bissen übrig'];
+const YUM = ['mmh!', 'mmmh!', 'mmmmh!!'];
+let bitesTaken = 0;
+let eating = false;
+
+function crumbs(oven, x, y, a) {
+  if (reduce || !oven.animate) return;
+  const W = oven.clientWidth, H = oven.clientHeight;
+  for (let i = 0; i < 7; i++) {
+    const c = document.createElement('span');
+    c.className = 'crumb';
+    c.style.left = (x / 220 * W - 3.5) + 'px';
+    c.style.top = (y / 200 * H - 3.5) + 'px';
+    const s = 0.6 + Math.random() * 0.8;
+    c.style.transform = 'scale(' + s + ')';
+    oven.append(c);
+    const dx = Math.cos(a) * (18 + Math.random() * 26) + (Math.random() - .5) * 30;
+    const dy = Math.sin(a) * (10 + Math.random() * 18) - 10 - Math.random() * 14;
+    const anim = c.animate([
+      { transform: 'translate(0,0) scale(' + s + ')', opacity: 1 },
+      { transform: 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(' + s + ')', opacity: 1, offset: .45 },
+      { transform: 'translate(' + (dx * 1.3).toFixed(1) + 'px,' + (dy + 46).toFixed(1) + 'px) scale(' + s + ')', opacity: 0 }
+    ], { duration: 650 + Math.random() * 200, easing: 'ease-out' });
+    anim.onfinish = () => c.remove();
+  }
+  const y2 = document.createElement('span');
+  y2.className = 'yum';
+  y2.textContent = YUM[Math.min(bitesTaken - 1, 2)];
+  y2.style.left = (x / 220 * W + Math.cos(a) * 14 - 20) + 'px';
+  y2.style.top = (y / 200 * H + Math.sin(a) * 14 - 24) + 'px';
+  oven.append(y2);
+  const an = y2.animate([
+    { transform: 'translateY(6px) scale(.8)', opacity: 0 },
+    { transform: 'translateY(-4px) scale(1.05)', opacity: 1, offset: .3 },
+    { transform: 'translateY(-26px) scale(1)', opacity: 0 }
+  ], { duration: 900, easing: 'ease-out' });
+  an.onfinish = () => y2.remove();
+}
+
+function takeBite() {
+  if (eating || bitesTaken >= 3) return;
+  const oven = $('oven');
+  const svg = oven.querySelector('svg');
+  const a = BITE_ANG[bitesTaken] * Math.PI / 180;
+  const ca = Math.cos(a), sa = Math.sin(a);
+  const ex = 110 + ca * 66, ey = 105 + sa * 66;
+  const tx = -sa, ty = ca;
+  const c = (x, y, r) => '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + r + '" fill="#000"/>';
+  const x0 = ex + ca * 3, y0 = ey + sa * 3;
+  svg.querySelector('.bitemarks').insertAdjacentHTML('beforeend',
+    c(x0, y0, 20) + c(x0 + tx * 18 + ca * 4, y0 + ty * 18 + sa * 4, 15) + c(x0 - tx * 18 + ca * 4, y0 - ty * 18 + sa * 4, 15));
+  bitesTaken++;
+  if (!reduce) { oven.classList.remove('wobble'); void oven.offsetWidth; oven.classList.add('wobble'); }
+  crumbs(oven, ex, ey, a);
+  if (bitesTaken < 3) {
+    $('eat').textContent = BTN_TEXT[bitesTaken];
+    $('bites-left').textContent = LEFT_TEXT[bitesTaken];
+    return;
+  }
+  eating = true;
+  markOpened(TODAY);
+  $('eat').disabled = true;
+  $('bites-left').textContent = 'Vernascht!';
+  const done = () => { $('gate').hidden = true; showDay(true); window.scrollTo({ top: 0, behavior: 'auto' }); };
+  if (reduce) { done(); return; }
+  setTimeout(() => oven.classList.add('gone'), 380);
+  setTimeout(done, 950);
+}
+
+function showGate() {
+  $('gate').hidden = false;
+  const oven = $('oven');
+  oven.insertAdjacentHTML('afterbegin', rollSVG('m-gate'));
+  $('gate-num').textContent = TODAY;
+  $('gate-title').textContent = TODAY === DAYS ? 'Die Heiligabend-Zimtschnecke ist da!' : 'Zimtschnecke Nr. ' + TODAY + ' ist frisch aus dem Ofen.';
+  $('eat').textContent = BTN_TEXT[0];
+  $('bites-left').textContent = LEFT_TEXT[0];
+  $('eat').addEventListener('click', takeBite);
+  oven.addEventListener('click', takeBite);
+  oven.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); takeBite(); } });
+}
+
+/* ================= Positiver Gedanke ================= */
+function renderThought() {
+  const [ref, text] = THOUGHTS[view - 1];
+  $('t-label').textContent = view === TODAY && !AFTER ? 'Positiver Gedanke von heute' : 'Positiver Gedanke vom ' + fmtDayMonth(doorDate(view));
+  $('thought').textContent = text;
+  const item = BYID[ref] || LBYID[ref];
+  $('proof-src').innerHTML = item ? item.src.map(s => '<li><a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a></li>').join('') : '';
+  const fd = DOOR_OF[ref];
+  const canOpen = !!BYID[ref] && !!fd && fd <= TODAY && !PRE;
+  $('proof-hint').textContent = canOpen
+    ? (fd === view ? 'Dazu gibt es heute auch ein Häppchen.' : 'Dazu gibt es auch ein Häppchen in Zimtschnecke Nr. ' + fd + '.')
+    : (BYID[ref] && fd ? 'Das passende Häppchen steckt in Zimtschnecke Nr. ' + fd + ', die kommt noch.' : 'Quelle zum Nachlesen.');
+  const po = $('proof-open');
+  po.hidden = !canOpen;
+  po.onclick = () => goTo(fd, ref);
+}
+function closeProof() { $('proof').hidden = true; $('proof-btn').setAttribute('aria-expanded', 'false'); }
+$('proof-btn').addEventListener('click', () => {
+  const open = $('proof').hidden;
+  $('proof').hidden = !open;
+  $('proof-btn').setAttribute('aria-expanded', String(open));
+});
+
+/* ================= Zum Schmunzeln ================= */
+function renderCorner() {
+  $('mascot').innerHTML = mascot(view);
+  $('corner-text').textContent = POEMS[CORNER[view - 1]];
+}
+
+/* ================= Häppchen ================= */
+function renderBites() {
+  const box = $('bites');
+  box.innerHTML = '';
+  ORDER.forEach(c => {
+    const id = PLAN[c][view - 1];
+    const f = BYID[id];
+    const wrap = document.createElement('div');
+    wrap.className = 'bite' + (seen.has(id) ? ' seen' : '');
+    wrap.style.setProperty('--c', CAT[c].c);
+    wrap.dataset.id = id;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = '<span class="lbl"><span class="cat">' + esc(CAT[c].name) + '</span><span class="ttl">' + esc(f.title) + '</span></span><span class="state" aria-hidden="true">+</span>';
+    const body = document.createElement('div');
+    body.className = 'body';
+    body.hidden = true;
+    const rel = (f.rel || []).filter(r => BYID[r] && DOOR_OF[r] && DOOR_OF[r] <= TODAY && DOOR_OF[r] !== view);
+    body.innerHTML = '<p>' + esc(f.text) + '</p>' +
+      '<ul class="src">' + f.src.map(s => '<li><a href="' + esc(s[1]) + '" target="_blank" rel="noopener">' + esc(s[0]) + '</a></li>').join('') + '</ul>' +
+      (rel.length ? '<div class="rel"><span class="label">Passt dazu</span>' + rel.map(r => '<button class="pill" type="button" data-go="' + r + '">' + esc(BYID[r].title) + '</button>').join('') + '</div>' : '');
+    btn.addEventListener('click', () => toggleBite(wrap, btn, body, id));
+    body.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => goTo(DOOR_OF[b.dataset.go], b.dataset.go)));
+    wrap.append(btn, body);
+    box.append(wrap);
+  });
+}
+function toggleBite(wrap, btn, body, id, force) {
+  const open = force !== undefined ? force : body.hidden;
+  body.hidden = !open;
+  wrap.dataset.open = String(open);
+  btn.setAttribute('aria-expanded', String(open));
+  if (open) {
+    if (!seen.has(id)) {
+      seen.add(id);
+      store.set('zs2-seen', [...seen]);
+      wrap.classList.add('seen');
+      renderDoors();
+    }
+    if (!reduce && body.animate) body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 260, easing: 'ease-out' });
+  }
+}
+function expand(id) {
+  const wrap = $('bites').querySelector('[data-id="' + id + '"]');
+  if (!wrap) return;
+  toggleBite(wrap, wrap.querySelector('button'), wrap.querySelector('.body'), id, true);
+  wrap.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+}
+
+/* ================= Tag anzeigen ================= */
+function renderNote() {
+  const n = $('note');
+  if (view === DAYS) n.textContent = 'Frohe Weihnachten! Alle Zimtschnecken bleiben warm, so lange du magst.';
+  else if (view === TODAY) n.textContent = 'Das war Zimtschnecke Nr. ' + view + '. Keine Eile: Alle Zimtschnecken bleiben warm, auch die von gestern. Morgen kommt die nächste frisch aus dem Ofen.';
+  else n.textContent = 'Keine Eile. Alle Zimtschnecken bleiben warm.';
+}
+function showDay(animate) {
+  $('day').hidden = false;
+  markOpened(view);
+  $('day-title').textContent = 'Zimtschnecke Nr. ' + view;
+  $('day-date').textContent = fmtLong(doorDate(view));
+  const other = view !== TODAY;
+  $('viewing').hidden = !other;
+  if (other) $('viewing-text').textContent = 'Du schaust gerade Zimtschnecke Nr. ' + view + ' an.';
+  closeProof();
+  renderThought();
+  renderCorner();
+  renderBites();
+  renderNote();
+  renderDoors();
+  if (animate && !reduce && $('day').animate) $('day').animate([{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'ease-out' });
+}
+function goTo(v, id) {
+  if (PRE || v > TODAY) return;
+  if (!$('gate').hidden) $('gate').hidden = true;
+  view = v;
+  showDay(true);
+  if (id) setTimeout(() => expand(id), 60);
+  else $('day').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+}
+$('back-today').addEventListener('click', () => goTo(TODAY));
+
+/* ================= Alle Zimtschnecken ================= */
+function renderDoors() {
+  const box = $('doors');
+  if (!box.childElementCount) {
+    for (let v = 1; v <= DAYS; v++) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'door';
+      b.dataset.v = v;
+      b.innerHTML = '<span class="bun"><b>' + v + '</b></span><small>' + fmtShort(doorDate(v)) + '</small>';
+      b.addEventListener('click', () => { if (!PRE && v <= TODAY) goTo(v); });
+      box.append(b);
+    }
+  }
+  box.querySelectorAll('.door').forEach(b => {
+    const v = +b.dataset.v;
+    const locked = PRE || v > TODAY;
+    const eaten = !locked && (opened.has(v) || ORDER.some(c => seen.has(PLAN[c][v - 1])));
+    b.className = 'door' + (locked ? ' locked' : '') + (!PRE && !AFTER && v === TODAY ? ' today' : '') + (!locked && v === view && !$('day').hidden ? ' current' : '') + (eaten ? ' eaten' : '');
+    b.disabled = locked;
+    b.setAttribute('aria-label', 'Zimtschnecke ' + v + ', ' + fmtLong(doorDate(v)) + (locked ? ', noch im Ofen' : eaten ? ', angeknabbert' : ''));
+  });
+  const n = seen.size;
+  $('progress').textContent = PRE ? 'Ab dem 19. November kommt jeden Tag eine frische Zimtschnecke aus dem Ofen.' :
+    (n ? 'Schon entdeckt: ' + n + ' Wissenshäppchen. ' : '') + 'Ältere Zimtschnecken bleiben warm, du kannst sie jederzeit vernaschen.';
+}
+
+/* ================= Start ================= */
+renderMeta();
+if (PRE) {
+  showPre();
+} else if (!AFTER && !opened.has(TODAY)) {
+  showGate();
+} else {
+  showDay(false);
+}
+renderDoors();
+
+/* Seite bleibt offen über Mitternacht: beim Zurückkehren neu laden */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+  if (midnight(new Date()).getTime() !== midnight(now).getTime()) location.reload();
+});
+</script>
+
+</body>
+</html>
