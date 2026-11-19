@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Zimtschnecken-Fabrik: jeden Tag eine Zimtschnecke vernaschen, darin ein positiver Gedanke, etwas zum Schmunzeln und vier Häppchen. Farben: Violett Psychologie, Himbeer Physiologie, Petrol Gehirn, Blau Allgemeinwissen, Zimt für alles Süße. */
+/* Zimtschnecken-Fabrik: jeden Tag eine Zimtschnecke vernaschen, darin ein positiver Gedanke, ein schönes Wort und drei Häppchen. Farben: Violett Psychologie, Himbeer Physiologie, Petrol Gehirn, Blau Allgemeinwissen, Zimt für alles Süße. */
 :root {
   --bg: #efedf2;
   --surface: #fdfcfe;
@@ -178,17 +178,15 @@ h1 .zimt { color: var(--zimt); }
   padding-block: 2px;
 }
 
-/* Zum Schmunzeln */
+/* Schönes Wort des Tages */
 .corner { background: var(--zimt-wash); border-radius: 18px; padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 12px; }
 .corner-head { display: flex; align-items: center; gap: 14px; }
 .corner-head svg { width: 84px; height: 84px; flex: none; }
 .corner-head .t { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
-.corner-head .name { font-family: var(--f-display); font-weight: 700; font-size: 19px; color: var(--zimt); }
-.stamp {
-  font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
-  border: 1.5px solid var(--zimt); color: var(--zimt); border-radius: 6px; padding: 2px 7px; transform: rotate(-3deg);
-}
-.corner .poem { margin: 0; white-space: pre-line; font-style: italic; font-size: 18px; line-height: 1.55; }
+.corner-head .word { font-family: var(--f-display); font-weight: 800; font-size: clamp(24px, 7vw, 30px); line-height: 1.1; color: var(--zimt); overflow-wrap: break-word; hyphens: manual; -webkit-hyphens: manual; }
+.corner-head .word.long { font-size: clamp(21px, 5.8vw, 26px); }
+.corner-head .lang { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.corner .text { margin: 0; font-size: 18px; line-height: 1.55; }
 
 /* Häppchen */
 .bites { display: flex; flex-direction: column; gap: 10px; }
@@ -278,7 +276,7 @@ footer p { margin: 0; }
     <h2 id="gate-title"></h2>
     <button class="btn" id="eat" type="button">Vernaschen</button>
     <span class="bites-left" id="bites-left" aria-live="polite">3 Bissen</span>
-    <p>Darin: ein positiver Gedanke, etwas zum Schmunzeln und vier kleine Wissenshäppchen. Ganz ohne Eile.</p>
+    <p>Darin: ein positiver Gedanke, ein schönes Wort und drei kleine Wissenshäppchen. Ganz ohne Eile.</p>
   </section>
 
   <main class="day" id="day" hidden>
@@ -306,21 +304,22 @@ footer p { margin: 0; }
     </section>
 
     <section class="stack" aria-labelledby="c-label">
-      <span class="label" id="c-label">Zum Schmunzeln</span>
+      <span class="label" id="c-label">Schönes Wort des Tages</span>
       <div class="corner">
         <div class="corner-head">
           <span id="mascot"></span>
           <div class="t">
-            <span class="name">Zimt &amp; Blüten</span>
-            <span class="stamp">Frei erfunden</span>
+            <span class="word" id="word"></span>
+            <span class="lang" id="word-lang"></span>
           </div>
         </div>
-        <p class="poem" id="corner-text"></p>
+        <p class="text" id="word-text"></p>
+        <ul class="src" id="word-src"></ul>
       </div>
     </section>
 
     <section class="stack" aria-labelledby="b-label">
-      <span class="label" id="b-label">Vier Wissenshäppchen</span>
+      <span class="label" id="b-label">Drei Wissenshäppchen</span>
       <div class="bites" id="bites"></div>
     </section>
 
@@ -334,7 +333,7 @@ footer p { margin: 0; }
   </details>
 
   <footer>
-    <p>Alle Wissenshäppchen und positiven Gedanken sind mit Quellen belegt. Alles unter „Zum Schmunzeln“ ist frei erfunden und nur zum Lächeln da.</p>
+    <p>Alle positiven Gedanken, Wörter und Wissenshäppchen sind mit Quellen belegt.</p>
     <p>Tipp fürs iPhone: In Safari auf Teilen tippen und „Zum Home-Bildschirm“ wählen. Dann ist die Fabrik wie eine kleine App immer griffbereit.</p>
   </footer>
 </div>
@@ -348,7 +347,7 @@ const CAT = {
   hirn: { name: 'Gehirn & Nerven', c: 'var(--hirn)' },
   allg: { name: 'Allgemeinwissen', c: 'var(--allg)' }
 };
-const ORDER = ['psyche', 'phys', 'hirn', 'allg'];
+const ORDER = ['psyche', 'phys', 'hirn'];
 const PUB = n => 'https://pubmed.ncbi.nlm.nih.gov/' + n + '/';
 const WP = t => 'https://de.wikipedia.org/wiki/' + t;
 
@@ -824,147 +823,11 @@ const FACTS = [
     src: [['Wikipedia · Blinder Fleck (Auge)', WP('Blinder_Fleck_(Auge)')]],
     rel: ['h29', 'h38'] },
 
-  /* ---------- Allgemeinwissen ---------- */
-  { id: 'a1', cat: 'allg', title: 'Drei Herzen, blaues Blut',
-    text: 'Kraken haben drei Herzen: Zwei pumpen Blut durch die Kiemen, eines durch den restlichen Körper. Ihr Blut ist blau, weil der Sauerstoff an kupferhaltiges Hämocyanin gebunden ist statt an eisenhaltiges Hämoglobin.',
-    src: [['Wikipedia · Kraken', WP('Kraken')]],
-    rel: ['a7', 'a24'] },
-  { id: 'a2', cat: 'allg', title: 'Ein Tag länger als ein Jahr',
-    text: 'Die Venus dreht sich so langsam um sich selbst, dass eine Umdrehung rund 243 Erdtage dauert. Für einen Umlauf um die Sonne braucht sie nur etwa 225 Tage. Ein Venustag ist also länger als ein Venusjahr.',
-    src: [['Wikipedia · Venus (Planet)', WP('Venus_(Planet)')]],
-    rel: ['a10', 'a29'] },
-  { id: 'a3', cat: 'allg', title: 'Die Banane ist eine Beere',
-    text: 'Botanisch gesehen sind Bananen Beeren, genau wie Tomaten und Kiwis. Die Erdbeere dagegen ist gar keine Beere, sondern eine Sammelnussfrucht. Die eigentlichen Früchte sind die kleinen Nüsschen auf ihrer Oberfläche.',
-    src: [['Wikipedia · Beere', WP('Beere')]],
-    rel: ['a14', 'a9'] },
-  { id: 'a4', cat: 'allg', title: 'Kleopatra und die Mondlandung',
-    text: 'Die Cheops-Pyramide wurde um 2600 v. Chr. gebaut, Kleopatra lebte im 1. Jahrhundert v. Chr. Damit lag Kleopatras Zeit näher an der Mondlandung 1969 als am Bau der Pyramide.',
-    src: [['Wikipedia · Cheops-Pyramide', WP('Cheops-Pyramide')], ['Wikipedia · Kleopatra VII.', WP('Kleopatra_VII.')]],
-    rel: ['a35', 'a12'] },
-  { id: 'a5', cat: 'allg', title: 'Würfel aus dem Wombat',
-    text: 'Wombats hinterlassen würfelförmigen Kot. Forschende fanden heraus, dass unterschiedlich steife Abschnitte der Darmwand die Kanten formen. Dafür gab es 2019 sogar einen Ig-Nobelpreis.',
-    src: [['Wikipedia · Wombats', WP('Wombats')]],
-    rel: ['a1'] },
-  { id: 'a6', cat: 'allg', title: 'Hamburg, Stadt der Brücken',
-    text: 'Hamburg hat rund 2.500 Brücken, mehr als Venedig, Amsterdam und London zusammen. Damit gilt es als brückenreichste Stadt Europas.',
-    src: [['Wikipedia · Hamburg', WP('Hamburg')]],
-    rel: ['a18', 'a15'] },
-  { id: 'a7', cat: 'allg', title: 'Haie sind älter als Bäume',
-    text: 'Die ersten Haie schwammen schon vor über 400 Millionen Jahren durch die Meere. Die ersten Bäume entstanden erst Dutzende Millionen Jahre später, vor rund 385 Millionen Jahren.',
-    src: [['Wikipedia · Haie', WP('Haie')]],
-    rel: ['a1'] },
-  { id: 'a8', cat: 'allg', title: 'Schmecken mit den Füßen',
-    text: 'Schmetterlinge haben Geschmackssinneszellen an den Füßen. Weibchen trommeln damit auf Blätter, um zu prüfen, ob sie sich als Futter für ihre Raupen eignen.',
-    src: [['Wikipedia · Schmetterlinge', WP('Schmetterlinge')]],
-    rel: ['a17', 'a9'] },
-  { id: 'a9', cat: 'allg', title: 'Rosa durch Futter',
-    text: 'Flamingos sind nicht von Natur aus rosa. Ihre Farbe stammt von Carotinoiden aus Algen und kleinen Krebstieren, die sie fressen. Fehlt diese Nahrung, verblasst das Gefieder.',
-    src: [['Wikipedia · Flamingos', WP('Flamingos')]],
-    rel: ['a3', 'a8'] },
-  { id: 'a10', cat: 'allg', title: 'Der Mond zieht davon',
-    text: 'Der Mond entfernt sich jedes Jahr um etwa 3,8 Zentimeter von der Erde. Gemessen wird das mit Laserstrahlen, die an Reflektoren zurückgeworfen werden, die Apollo-Astronauten auf dem Mond aufgestellt haben.',
-    src: [['Wikipedia · Mond', WP('Mond')]],
-    rel: ['a2', 'a29'] },
-  { id: 'a11', cat: 'allg', title: 'Heißer als die Sonne',
-    text: 'Ein Blitzkanal wird bis zu 30.000 Grad Celsius heiß. Das ist rund fünfmal heißer als die Oberfläche der Sonne mit etwa 5.500 Grad.',
-    src: [['Wikipedia · Blitz', WP('Blitz')]],
-    rel: ['a13'] },
-  { id: 'a12', cat: 'allg', title: 'Der kürzeste Krieg',
-    text: 'Der Britisch-Sansibarische Krieg am 27. August 1896 dauerte nur etwa 40 Minuten. Er gilt als kürzester Krieg der Geschichte.',
-    src: [['Wikipedia · Britisch-Sansibarischer Krieg', WP('Britisch-Sansibarischer_Krieg')]],
-    rel: ['a4'] },
-  { id: 'a13', cat: 'allg', title: 'Ein Teelöffel Stern',
-    text: 'Neutronensterne sind so dicht, dass ein Teelöffel ihrer Materie Hunderte Millionen Tonnen wiegen würde. Ein ganzer Neutronenstern ist dabei nur etwa 20 Kilometer groß.',
-    src: [['Wikipedia · Neutronenstern', WP('Neutronenstern')]],
-    rel: ['a2', 'a11'] },
-  { id: 'a14', cat: 'allg', title: 'Honig verdirbt kaum',
-    text: 'Honig enthält sehr wenig Wasser und sehr viel Zucker, ist leicht sauer und bildet etwas Wasserstoffperoxid. Bakterien und Pilze haben darin kaum eine Chance. Gut verschlossen hält sich Honig deshalb extrem lange.',
-    src: [['Wikipedia · Honig', WP('Honig')]],
-    rel: ['a17', 'a3'] },
-  { id: 'a15', cat: 'allg', title: 'Der erste Adventskranz war ein Hamburger',
-    text: '1839 führte Johann Hinrich Wichern im Rauhen Haus in Hamburg den Adventskranz ein. Der erste bestand aus einem Wagenrad mit vier großen weißen Kerzen für die Adventssonntage und 20 kleinen roten für die Tage dazwischen. Seit etwa 1860 wird der Adventskranz aus Tannengrün gebunden.',
-    src: [['Wikipedia · Adventskranz', WP('Adventskranz')]],
-    rel: ['a21', 'a6'] },
-  { id: 'a16', cat: 'allg', title: 'Warum Schneeflocken sechs Arme haben',
-    text: 'Wassermoleküle können sich im Eiskristall nur in Winkeln von 60 oder 120 Grad aneinanderlagern. Deshalb sind Schneekristalle sechseckig. Eine Schneeflocke enthält etwa eine Trillion Wassermoleküle, und mit hoher Wahrscheinlichkeit gab es noch nie zwei komplexe Schneekristalle, die exakt gleich waren.',
-    src: [['Wikipedia · Schnee', WP('Schnee')]],
-    rel: ['a34', 'a23'] },
-  { id: 'a17', cat: 'allg', title: 'Bienen tanzen den Weg',
-    text: 'Honigbienen zeigen einander Futterquellen per Tanz. Der Winkel des Schwänzellaufs zur Senkrechten entspricht dem Winkel zwischen Sonne und Ziel, und je weiter das Ziel entfernt ist, desto länger dauert der Tanz. Für nahe Ziele bis etwa 100 Meter gibt es den Rundtanz. Karl von Frisch bekam für die Entschlüsselung 1973 den Nobelpreis.',
-    src: [['Wikipedia · Tanzsprache', WP('Tanzsprache')]],
-    rel: ['a8', 'a14'] },
-  { id: 'a18', cat: 'allg', title: 'Die Speicherstadt steht auf Holz',
-    text: 'Hamburgs Speicherstadt ist der weltgrößte historische Lagerhauskomplex. Die Speicher stehen auf Pfählen aus zwölf Meter langen Nadelholzstämmen. Gebaut wurde ab 1883, gelagert wurden vor allem Kaffee, Tee und Gewürze. Seit 2015 gehört sie zum UNESCO-Welterbe.',
-    src: [['Wikipedia · Speicherstadt', WP('Speicherstadt_Hamburg')]],
-    rel: ['a6', 'a20'] },
-  { id: 'a19', cat: 'allg', title: 'Der Glückskeks ist kein Chinese',
-    text: 'Glückskekse gibt es in vielen chinesischen Restaurants, aber sie stammen nicht aus China. Sie tauchten Anfang des 20. Jahrhunderts an der amerikanischen Westküste auf und haben japanische Wurzeln, eine Spur führt zu einem japanischen Teegarten im Golden Gate Park in San Francisco. In China selbst waren sie lange völlig unbekannt.',
-    src: [['Wikipedia · Glückskeks', WP('Glückskeks')]],
-    rel: ['a26'] },
-  { id: 'a20', cat: 'allg', title: 'Die weiße Haut der Elbphilharmonie',
-    text: 'Die Wände im Großen Saal der Elbphilharmonie sind mit insgesamt 10.000 Gipsfaserplatten verkleidet, der sogenannten „Weißen Haut“. Jede Platte ist ein Unikat, ihre Oberfläche wurde mit mathematischen Algorithmen am Computer berechnet und gefräst. Um den Klang im Saal mit 2.100 Plätzen kümmerte sich der Akustiker Yasuhisa Toyota.',
-    src: [['Wikipedia · Elbphilharmonie', WP('Elbphilharmonie')]],
-    rel: ['a18', 'h34'] },
-  { id: 'a21', cat: 'allg', title: 'Der Weihnachtsbaum ist alt',
-    text: 'Für 1539 ist belegt, dass im Straßburger Münster ein Weihnachtsbaum aufgestellt wurde. 1605 heißt es dann: „Auff Weihenachten richtett man Dannenbäum zu Straszburg in den stuben“. Vom deutschsprachigen Raum aus verbreitete sich der Brauch im 19. Jahrhundert über die ganze Welt.',
-    src: [['Wikipedia · Weihnachtsbaum', WP('Weihnachtsbaum')]],
-    rel: ['a15', 'a22'] },
-  { id: 'a22', cat: 'allg', title: 'Coca-Cola hat ihn nicht erfunden',
-    text: 'Den rot-weißen Weihnachtsmann gab es schon vor der Coca-Cola-Werbung. Schon 1822 beschrieb ein Gedicht einen Mann im roten Mantel, und der Zeichner Thomas Nast wählte Rot und Weiß, als seine Zeichnungen koloriert werden sollten. Coca-Cola machte das Bild ab 1931 mit Zeichnungen von Haddon Sundblom nur weltberühmt. Die Figur selbst geht auf Nikolaus-Bräuche zurück.',
-    src: [['Wikipedia · Weihnachtsmann', WP('Weihnachtsmann')]],
-    rel: ['a31', 'a21'] },
-  { id: 'a23', cat: 'allg', title: 'Kerzen im All',
-    text: 'In der Schwerelosigkeit brennt eine Kerze mit einer kugelförmigen Flamme. Ohne Auftrieb steigt keine heiße Luft nach oben, und der Sauerstoff kommt nur über Diffusion an die Flamme. Dafür sieht man das bläuliche Leuchten der Verbrennungsgase.',
-    src: [['Wikipedia · Kerze', WP('Kerze')]],
-    rel: ['a16', 'a33'] },
-  { id: 'a24', cat: 'allg', title: 'Bärtierchen überleben das All',
-    text: 'Bärtierchen sind meist nur 0,1 bis 0,5 Millimeter groß und fast unzerstörbar. Ausgetrocknet überstehen sie als sogenanntes Tönnchen Temperaturen von minus 196 bis plus 90 Grad. 2007 schickte die ESA Bärtierchen mit dem Satelliten FOTON-M3 zehn Tage ins offene Weltall, und es gab Überlebende.',
-    src: [['Wikipedia · Bärtierchen', WP('Bärtierchen')]],
-    rel: ['a1', 'a33'] },
-  { id: 'a25', cat: 'allg', title: 'Der Eiffelturm wächst im Sommer',
-    text: 'Stahl dehnt sich bei Wärme aus. An heißen Tagen wird der Eiffelturm deshalb einige Zentimeter höher, der Rekord lag bei 18 Zentimetern im Sommer 1976. Außerdem neigt er sich leicht von der Sonne weg, weil sich die sonnige Seite stärker ausdehnt. Zusammengehalten wird er von 2,5 Millionen Nieten.',
-    src: [['Wikipedia · Eiffelturm', WP('Eiffelturm')]],
-    rel: ['h8', 'a27'] },
-  { id: 'a26', cat: 'allg', title: 'Nintendo begann mit Spielkarten',
-    text: 'Nintendo wurde am 23. September 1889 in Kyōto von Fusajirō Yamauchi gegründet. Am Anfang stellte die Firma ausschließlich traditionelle japanische Hanafuda-Spielkarten her.',
-    src: [['Wikipedia · Nintendo', WP('Nintendo')]],
-    rel: ['a19', 'h36'] },
-  { id: 'a27', cat: 'allg', title: 'Glas fließt nicht',
-    text: 'Gern erzählt: Alte Kirchenfenster seien unten dicker, weil Glas über die Jahrhunderte langsam nach unten fließt. Stimmt nicht. Bei Raumtemperatur bräuchte das Jahrmillionen. Die Verdickung stammt vom damaligen Herstellungsverfahren, dem Zylinderblasen.',
-    src: [['Wikipedia · Glas', WP('Glas')]],
-    rel: ['a25'] },
-  { id: 'a28', cat: 'allg', title: 'Kolibris fliegen rückwärts',
-    text: 'Kolibris können in der Luft stehen, seitwärts und sogar rückwärts fliegen. Dafür schlagen sie 40 bis 50 Mal pro Sekunde mit den Flügeln. Ihr Herz ist im Verhältnis zum Körper sehr groß und schlägt 400 bis 500 Mal pro Minute.',
-    src: [['Wikipedia · Kolibris', WP('Kolibris')]],
-    rel: ['k11', 'a17'] },
-  { id: 'a29', cat: 'allg', title: 'Im Winter sind wir der Sonne am nächsten',
-    text: 'Anfang Januar erreicht die Erde ihren sonnennächsten Punkt, rund 147 Millionen Kilometer. Anfang Juli sind es etwa 152 Millionen. Die Jahreszeiten entstehen also nicht durch den Abstand zur Sonne, sondern durch die Neigung der Erdachse.',
-    src: [['Wikipedia · Jahreszeit', WP('Jahreszeit')], ['Wikipedia · Erdbahn', WP('Erdbahn')]],
-    rel: ['a30', 'a10'] },
+  /* ---------- Belege für zwei Gedanken (Allgemeinwissen wird nicht mehr als Häppchen gezeigt) ---------- */
   { id: 'a30', cat: 'allg', title: 'Ab jetzt wird’s heller',
     text: 'Auf der Nordhalbkugel ist am 21. oder 22. Dezember Wintersonnenwende: der kürzeste Tag und die längste Nacht des Jahres. Danach wird der Bogen, den die Sonne am Himmel zieht, wieder länger und höher. Ab jetzt gibt es jeden Tag ein bisschen mehr Licht.',
     src: [['Wikipedia · Sonnenwende', WP('Sonnenwende')]],
     rel: ['a29'] },
-  { id: 'a31', cat: 'allg', title: 'Rudolph war Werbung',
-    text: 'Rudolph mit der roten Nase entstand 1939 als Werbeidee: Robert L. May schrieb die Geschichte für ein Malbuch der Kaufhauskette Montgomery Ward in Chicago. Das Lied dazu schrieb sein Schwager Johnny Marks, und 1949 machte Gene Autry es zum großen Hit.',
-    src: [['Wikipedia · Rudolph, the Red-Nosed Reindeer', WP('Rudolph_das_Rentier')]],
-    rel: ['a32', 'a22'] },
-  { id: 'a32', cat: 'allg', title: 'Rentieraugen werden im Winter blau',
-    text: 'Bei arktischen Rentieren schimmert die reflektierende Schicht hinter der Netzhaut im Sommer golden, im Winter tiefblau. In der langen Polarnacht steigt der Druck im Auge, die Fasern dieser Schicht rücken enger zusammen und reflektieren blaues Licht. Das Auge wird lichtempfindlicher, sieht dafür etwas unschärfer.',
-    src: [['Stokkan et al. 2013 · Proceedings of the Royal Society B (UiT Tromsø)', 'https://en.uit.no/go/target/355402']],
-    rel: ['a31', 'h39'] },
-  { id: 'a33', cat: 'allg', title: 'Jingle Bells im Weltall',
-    text: 'Im Dezember 1965 meldete die Crew von Gemini 6 ein seltsames Objekt und spielte dann „Jingle Bells“: Wally Schirra auf einer Mundharmonika, Tom Stafford mit Glöckchen. Es war das erste Musikstück, das im Weltall auf Instrumenten gespielt wurde. 1967 schenkten die beiden die Instrumente dem Smithsonian-Luftfahrtmuseum in Washington.',
-    src: [['Smithsonian National Air and Space Museum', 'https://airandspace.si.edu/stories/editorial/tom-staffords-jingle-bells-and-wally-schirras-harmonica']],
-    rel: ['a23', 'a24'] },
-  { id: 'a34', cat: 'allg', title: 'Fest, flüssig und gasförmig zugleich',
-    text: 'Bei 0,01 Grad Celsius und einem Druck von rund 611 Pascal, das ist weniger als ein Hundertstel des normalen Luftdrucks, existieren Wasser, Eis und Wasserdampf gleichzeitig im Gleichgewicht. Dieser besondere Zustand heißt Tripelpunkt.',
-    src: [['Wikipedia · Tripelpunkt', WP('Tripelpunkt')]],
-    rel: ['a16'] },
-  { id: 'a35', cat: 'allg', title: 'Oxford ist älter als die Azteken',
-    text: 'In Oxford wurde nachweislich schon 1096 gelehrt. Die Azteken gründeten ihre Hauptstadt Tenochtitlan erst 1325, und das Aztekenreich führt seine Wurzeln auf das Jahr 1428 zurück. Die Universität ist also älter als das Reich der Azteken.',
-    src: [['Wikipedia · University of Oxford', 'https://en.wikipedia.org/wiki/University_of_Oxford'], ['Wikipedia · Aztekenreich', WP('Aztekenreich')]],
-    rel: ['a4', 'a12'] },
   { id: 'x1', cat: 'allg', title: 'Ein Lied mit Gitarre',
     text: '„Stille Nacht, heilige Nacht“ wurde am 24. Dezember 1818 in der Kirche St. Nikolaus in Oberndorf bei Salzburg zum ersten Mal gesungen, begleitet nur von einer Gitarre. Heute gibt es das Lied in Hunderten Sprachen und Dialekten, und Österreich führt es als immaterielles Kulturerbe.',
     src: [['Wikipedia · Stille Nacht, heilige Nacht', WP('Stille_Nacht,_heilige_Nacht')]],
@@ -975,77 +838,65 @@ const FACTS = [
 const PLAN = {
   psyche: ['p28','p13','p3','p30','p15','p20','p32','p2','p25','p16','p4','p31','p17','p19','p33','p11','p14','p26','p6','p29','p21','p5','p35','p1','p23','p27','p10','p7','p34','p22','p18','p36','p12','p24','p8','p9'],
   phys:   ['k6','k13','h8','k17','k2','k30','k4','k16','k12','k21','k7','k24','k3','k31','k19','k8','k20','k14','k25','k5','k26','k29','h12','k22','k15','k9','k18','k32','k10','k33','k1','k27','k23','k28','h13','k11'],
-  hirn:   ['h1','h22','h9','h32','h14','h24','h2','h23','h28','h11','h39','h21','h4','h25','h31','h3','h18','h29','h16','h19','h30','h10','h36','h26','h5','h37','h34','h6','h17','h20','h7','h38','h33','h35','h27','h15'],
-  allg:   ['a6','a1','a19','a3','a17','a2','a18','a5','a26','a9','a15','a4','a16','a24','a10','a27','a8','a22','a20','a11','a28','a21','a13','a25','a7','a31','a34','a33','a12','a23','a35','a14','a30','a32','a29','x1']
+  hirn:   ['h1','h22','h9','h32','h14','h24','h2','h23','h28','h11','h39','h21','h4','h25','h31','h3','h18','h29','h16','h19','h30','h10','h36','h26','h5','h37','h34','h6','h17','h20','h7','h38','h33','h35','h27','h15']
 };
 
 /* ================= Beleg für den Zimtschnecken-Gedanken ================= */
-const LEHR = [
-  { id: 'z6', title: 'Ein Feiertag nur für Zimtschnecken',
-    src: [['Visit Sweden · Cinnamon Bun Day', 'https://press.visitsweden.com/2024-09-27-Swedens-Sweetest-Tradition-10-million-Eaten-on-Cinnamon-Bun-Day'],
-          ['SVT Nyheter · Kanelbullens egna dag', 'https://www.svt.se/nyheter/lokalt/varmland/kanelbullens-egna-dag']] }
-];
+const LEHR = [];
 
-/* ================= Zum Schmunzeln (alles frei erfunden) ================= */
-const POEMS = {
-  eroeffnung: 'Große Eröffnung!\nDie Zimtschnecken-Fabrik hat heute ihre Tore geöffnet.\nBelegschaft: eine Zimtschnecke.\nProduktionsziel: 36 Zimtschnecken bis Heiligabend.\nLeitung der Qualitätskontrolle: du.',
-  befund: 'Physiotherapeutischer Befund einer Zimtschnecke:\nstark eingerollt, Haltung trotzdem tadellos.\nEmpfehlung: keine Therapie, nur Kaffee.',
-  montag: 'Ob Montag, Regen, viel zu tun,\nob keine Zeit zum Ausruhn:\nEin Duft von Zimt im Treppenhaus,\nund schon sieht alles besser aus.',
-  kontakt: 'Kontaktanzeige:\nSüße Zimtschnecke, gut gerollt, warmherzig, leicht klebrig, sucht Kaffee für gemeinsame Pausen.\nFranzbrötchen zwecklos.',
-  sechs: 'Erst Training um sechs, die Hantel, der Schweiß,\ndann Kaffee und Zimt, noch ofenheiß.\nSo geht ein Morgen, so darf er sein:\nerst stark, dann süß, dann Sonnenschein.',
-  rose: 'Die Rose sprach zur Zimtschnecke:\n„Wir zwei sind ein Gedicht.“\nDie Schnecke rollte sich verlegen\nund duftete ganz schlicht.',
-  durchsage: 'Durchsage aus der Fabrikhalle:\nWer hat Zimtschnecke Nr. 7 angeknabbert?\nBitte melden. Es gibt keine Strafe, nur Neid.',
-  ecke: 'Ein Franzbrötchen sprach zur Schnecke:\n„Du bist rund, ich bin ’ne Ecke.“\nDa sprach die Schnecke ganz entspannt:\n„Wir sind beide weltbekannt.“',
-  haiku: 'Zimtschnecken-Haiku:\nSo schön eingerollt.\nIch wollte nur kurz gucken.\nJetzt ist sie weg. Huch.',
-  garten: 'Draußen ist der Garten kahl,\ndrinnen blüht’s zum ersten Mal:\nein Sträußchen Tulpen, rot und klein,\ndazu ein Zimtduft, das muss sein.',
-  advent: 'Erster Advent in der Fabrik.\nEine Kerze brennt, die Zimtschnecken stehen andächtig drum herum.\nAb jetzt gilt: jeden Sonntag eine Kerze mehr, jeden Tag eine Zimtschnecke weniger.',
-  november: 'Zimt im Kaffee, Zimt im Tee,\nZimt beim Lesen auf dem Kanapee.\nWo er auftaucht, wird es warm,\nselbst ein Novembertag hat Charme.',
-  dezember: 'Zimt-Wissenschaft:\nIm Dezember steigt der Zimtgehalt der Luft um 400 Prozent.\nGemessen mit der Nase, auf jedem Weihnachtsmarkt.',
-  wetter: 'Zimtschnecken-Wetterbericht:\nMorgens leicht bewölkt mit Puderzucker, mittags vereinzelte Zimtschauer, nachmittags gute Aussichten auf Kaffee.\nDie Laune: durchgehend sonnig.',
-  stelle: 'Stellenanzeige der Fabrik:\nGesucht wird eine Vorkosterin in Vollzeit.\nAnforderungen: Liebe zu Zimt, Geduld beim Abkühlen, Talent zum Schwärmen.\nWir bieten: Krümel, so viele du willst.',
-  barbara: 'Barbaratag.\nEin Kirschzweig steht im Glas und wartet geduldig aufs Blühen.\nDie Zimtschnecke daneben wartet auf gar nichts, sie ist schon fertig.\nAngeberin.',
-  kalk: 'Die Schnecke hat kein Haus aus Kalk,\nsie hat ein Haus aus Teig und Zimt.\nUnd wer es sieht, der lächelt still:\nDas schönste Haus, ganz bestimmt.',
-  nikolaus: 'Nikolaus-Meldung aus der Fabrik:\nHeute Nacht wurde ein Mann mit rotem Mantel und weißem Bart in der Backstube gesichtet.\nEr hat nichts gestohlen. Nur probiert.\nSehr viel probiert.',
-  horoskop: 'Blumen-Horoskop für heute:\nTulpen raten zu Geduld, Rosen zu Komplimenten,\nund Sonnenblumen sagen nur: Kopf hoch, dahin, wo das Licht ist.',
-  beipack: 'Beipackzettel Zimtschnecke:\nZu Risiken und Nebenwirkungen fragen Sie Ihre Bäckerei.\nHäufige Nebenwirkungen: gute Laune, Krümel auf dem Pulli, spontanes Lächeln.',
-  schal: 'Die Zimtschnecke trägt jetzt einen Schal.\nSie sagt: „Im Dezember ist das ganz normal.“\nDie Kerze fragt: „Und was ist mit mir?“\n„Du bist heiß genug“, sagt die Schnecke zu ihr.',
-  rotation: 'Neue Übung aus der Fabrik-Physio:\ndie Zimtschnecken-Rotation.\nLangsam einrollen, kurz halten, genüsslich wieder ausrollen.\nDrei Sätze. Dazwischen Kaffee.',
-  peak: 'Studie des Instituts für angewandte Gebäckkunde:\nWer eine Zimtschnecke von außen nach innen isst, hebt sich das Beste bis zum Schluss auf.\nPeak-End-Regel, nur leckerer.',
-  anleitung: 'Bedienungsanleitung Zimtschnecke, Kurzfassung:\n1. Anschauen.\n2. Riechen.\n3. Feststellen, dass 1 und 2 nicht reichen.',
-  markt: 'Eilmeldung vom Weihnachtsmarkt:\nZimtstern und Zimtschnecke wurden gemeinsam gesichtet.\nFachleute sprechen von der süßesten Allianz des Jahres.',
-  limerick: 'Es lebte ein Krokus in Bern,\nder hatte den Zimt so gern.\nEr streute ihn munter\naufs Beet und darunter,\nnun riecht man den Garten von fern.',
-  briefe: 'Die Kanelbulle aus Stockholm schrieb\nans Franzbrötchen in Hamburg: „Lieb!“\nDas Franzbrötchen schrieb froh zurück:\n„Mit Zimt ist jeder Tag ein Stück Glück.“',
-  qualitaet: 'Bericht der Qualitätskontrolle:\nZimtschnecke Nr. 28 wurde gründlich geprüft.\nErgebnis: einwandfrei.\nLeider ist jetzt nichts mehr zum Prüfen übrig.',
-  woche: 'Die Woche ist lang, der Tag ist grau,\ndie Zimtschnecke weiß das genau.\nSie rollt sich ein und flüstert leise:\n„Iss mich jetzt, das ist sehr weise.“',
-  klatsch: 'Neues aus dem Blumenladen:\nDie Tulpe behauptet, die Rose sei eingebildet.\nDie Rose sagt, sie sei nur gut erzogen.\nDer Kaktus hält sich raus. Wie immer.',
-  neuro: 'Neurologischer Befund nach einer Zimtschnecke:\nGeruchssinn hervorragend.\nBelohnungssystem hochaktiv.\nWillenskraft vorübergehend nicht nachweisbar.',
-  inventur: 'Inventur in der Fabrik:\nZimt: reichlich. Butter: ausreichend. Zucker: großzügig.\nZimtschnecken: eine weniger, als im Plan steht.\nDie Ermittlungen laufen.',
-  sonnenwende: 'Längste Nacht des Jahres.\nDie Fabrik macht das Beste draus: mehr Dunkelheit heißt mehr Zeit für Kerzen, Kuscheldecke und Zimtschnecken.\nAb morgen wird es wieder heller. Aber nicht weniger lecker.',
-  ofen: 'Zimt-Weisheit des Tages:\nAuch die beste Zimtschnecke braucht ihre Zeit im Ofen.\nGutes darf dauern.\nAußer beim Essen. Da darf es schnell gehen.',
-  morgen: 'Nur noch eine Zimtschnecke bis Heiligabend!\nDie Öfen glühen, die Fabrik läuft auf Hochtouren,\nund der Weihnachtsmann hat schon zweimal angerufen, ob noch was übrig ist.',
-  xmas: 'Heiligabend, Kerzenschein,\nZimtduft zieht in jede Stube ein.\nDie Fabrik flüstert heut ganz leise:\nFrohe Weihnachten, auf süße Weise.'
-};
-/* Zimtschnecke 1 bis 36 */
-const CORNER = [
-  'eroeffnung', 'befund', 'montag', 'kontakt', 'sechs', 'rose',
-  'durchsage', 'ecke', 'haiku', 'garten', 'advent', 'november',
-  'dezember', 'wetter', 'stelle', 'barbara', 'kalk', 'nikolaus',
-  'horoskop', 'beipack', 'schal', 'rotation', 'peak', 'anleitung',
-  'markt', 'limerick', 'briefe', 'qualitaet', 'woche', 'klatsch',
-  'neuro', 'inventur', 'sonnenwende', 'ofen', 'morgen', 'xmas'
+/* ================= Schönes Wort des Tages (1 bis 36), jedes mit Quelle ================= */
+const DUDEN = t => 'https://www.duden.de/rechtschreibung/' + t;
+const ENWP = t => 'https://en.wikipedia.org/wiki/' + t;
+const WORDS = [
+  ['Vorfreude', 'Deutsch', 'Die Freude auf etwas, das noch kommt. Das schöne Kribbeln, bevor es richtig losgeht.', 'Duden · Vorfreude', DUDEN('Vorfreude')],
+  ['Fika', 'Schwedisch', 'Die schwedische Kaffeepause mit anderen zusammen, meist mit etwas Gebäck, gern mit Zimtschnecken. Das Wort entstand als Silbendreher aus „kaffe“, dem schwedischen Wort für Kaffee.', 'Wikipedia · Fika', ENWP('Fika_(Sweden)')],
+  ['Komorebi', 'Japanisch', 'Das Sonnenlicht, das durch die Blätter der Bäume fällt.', 'Wikipedia · Komorebi', ENWP('Komorebi')],
+  ['Augenweide', 'Deutsch', 'Ein sehr schöner Anblick, den etwas oder jemand bietet.', 'Duden · Augenweide', DUDEN('Augenweide')],
+  ['Fingerspitzen\u00ADgefühl', 'Deutsch', 'Wörtlich das Gefühl in den Fingerspitzen. Gemeint ist ein feines Gespür für Situationen und Menschen. Das Wort wird sogar im Englischen benutzt.', 'Wikipedia · Fingerspitzengefühl', ENWP('Fingerspitzengef%C3%BChl')],
+  ['Sobremesa', 'Spanisch', 'Die Zeit nach dem Essen, in der man noch gemütlich am Tisch sitzen bleibt. Wörtlich: „über dem Tisch“.', 'Wikipedia · Sobremesa', ENWP('Sobremesa')],
+  ['Ohrwurm', 'Deutsch', 'Eine eingängige Melodie, die einem nicht mehr aus dem Kopf geht. Das Englische hat das Wort übernommen: earworm.', 'Wikipedia · Ohrwurm', WP('Ohrwurm')],
+  ['Gezelligheid', 'Niederländisch', 'Ein Gefühl von Wohlsein, das man mit anderen teilt: gemütlich, gesellig und herzlich zugleich.', 'Wikipedia · Gezelligheid', ENWP('Gezelligheid')],
+  ['Ichi-go ichi-e', 'Japanisch', 'Wörtlich „ein Mal, eine Begegnung“. Jeder Moment ist einmalig und verdient es, geschätzt zu werden. Der Gedanke stammt aus der japanischen Teezeremonie.', 'Wikipedia · Ichi-go ichi-e', ENWP('Ichi-go_ichi-e')],
+  ['Fernweh', 'Deutsch', 'Die Sehnsucht, Vertrautes zu verlassen und die weite Welt zu entdecken. Das Gegenstück zu Heimweh.', 'Wikipedia · Fernweh', WP('Fernweh')],
+  ['Gemütlichkeit', 'Deutsch', 'Ein Gefühl von Wärme, Freundlichkeit und guter Stimmung. Dazu gehören Behaglichkeit, Seelenruhe und das Gefühl, dazuzugehören.', 'Wikipedia · Gemütlichkeit', ENWP('Gem%C3%BCtlichkeit')],
+  ['Hanami', 'Japanisch', 'Wörtlich „Blüten betrachten“: der Brauch, die vergängliche Schönheit der Kirsch- oder Pflaumenblüte zu genießen, oft bei einem Picknick unter den Bäumen. Die Tradition reicht bis in die Nara-Zeit (710 bis 794) zurück.', 'Wikipedia · Hanami', ENWP('Hanami')],
+  ['Serendipität', 'aus dem Englischen', 'Eine zufällige Entdeckung von etwas, das man gar nicht gesucht hat. Horace Walpole prägte das Wort 1754 nach dem Märchen „Die drei Prinzen von Serendip“. Serendip ist ein alter Name für Sri Lanka.', 'Wikipedia · Serendipität', WP('Serendipit%C3%A4t')],
+  ['Lagom', 'Schwedisch', 'Genau richtig: nicht zu viel und nicht zu wenig. Gemeint ist das Passende, nicht das Perfekte.', 'Wikipedia · Lagom', ENWP('Lagom')],
+  ['Carpe diem', 'Latein', 'Wörtlich „Pflücke den Tag“, aus einer Ode des Dichters Horaz von etwa 23 v. Chr. Gemeint ist: den Augenblick bewusst erleben, statt das Leben auf später zu verschieben.', 'Wikipedia · Carpe diem', WP('Carpe_diem')],
+  ['Kintsugi', 'Japanisch', '„Goldreparatur“: Zerbrochene Keramik wird mit Lack und Goldpulver wieder zusammengefügt. Die Bruchstellen werden dabei nicht versteckt, sondern betont.', 'Wikipedia · Kintsugi', WP('Kintsugi')],
+  ['Petrichor', 'Englisch', 'Der erdige Duft, wenn Regen auf trockenen Boden fällt. Zwei australische Forschende prägten das Wort 1964, aus griechisch „petra“ für Stein und „ichor“, dem Blut der Götter.', 'Wikipedia · Petrichor', ENWP('Petrichor')],
+  ['Hygge', 'Dänisch', 'Eine gemütliche, herzliche Atmosphäre, die einfach guttut, gern mit Kerzenlicht. Das britische Wörterbuch Collins setzte das Wort 2016 auf Platz zwei seiner Wörter des Jahres.', 'Wikipedia · Hygge', ENWP('Hygge')],
+  ['Kopfkino', 'Deutsch', 'Geschichten und Szenen, die nur in der eigenen Vorstellung ablaufen.', 'Duden · Kopfkino', DUDEN('Kopfkino')],
+  ['Mudita', 'Pali und Sanskrit', 'Die Mitfreude: die Freude darüber, dass es anderen gut geht. Im Buddhismus ist sie eine der vier erhabenen Geisteshaltungen und gilt als die schwierigste davon.', 'Wikipedia · Mudita', ENWP('Mudita')],
+  ['Sisu', 'Finnisch', 'Außergewöhnliche Entschlossenheit, gerade dann, wenn es schwierig wird. Die Wortwurzeln haben mit dem Inneren des Körpers zu tun, ähnlich wie das englische „guts“.', 'Wikipedia · Sisu', ENWP('Sisu')],
+  ['Flow', 'aus der Psychologie', 'Das beglückende Gefühl, völlig in einer Tätigkeit aufzugehen, sodass man Zeit und sich selbst vergisst. Es entsteht, wenn Anforderung und Können gut zusammenpassen. Den Begriff prägte der Glücksforscher Mihály Csíkszentmihályi.', 'Wikipedia · Flow (Psychologie)', WP('Flow_(Psychologie)')],
+  ['Ubuntu', 'Zulu und Xhosa', 'Menschlichkeit, Nächstenliebe und Gemeinsinn. Die Idee dahinter: Wir werden gemeinsam zu Menschen und machen uns gegenseitig menschlich.', 'Wikipedia · Ubuntu (Philosophie)', WP('Ubuntu_(Philosophie)')],
+  ['Tsundoku', 'Japanisch', 'Bücher kaufen und sie für später ungelesen stapeln. Ein Wort, das viele Lesende kennen, ohne es zu kennen.', 'Wikipedia · Tsundoku', ENWP('Tsundoku')],
+  ['Dolce far niente', 'Italienisch', 'Das süße Nichtstun. Ein schöner Plan für einen Adventssonntag.', 'Wikipedia · Dolce far niente', WP('Dolce_far_niente')],
+  ['Aloha', 'Hawaiisch', 'Liebe, Zuneigung, Frieden und Mitgefühl. Man sagt es zur Begrüßung und zum Abschied. Seit 1986 verlangt auf Hawaii sogar ein Gesetz, dass Behörden und Gerichte den Menschen mit Aloha begegnen.', 'Wikipedia · Aloha', ENWP('Aloha')],
+  ['Feierabend', 'Deutsch', 'Die freie Zeit nach der Arbeit. Ursprünglich hieß so der Vorabend eines Feiertags.', 'Wikipedia · Feierabend', WP('Feierabend')],
+  ['Schietwetter', 'Norddeutsch', 'Sehr schlechtes Wetter, salopp gesagt. Es kommt vom niederdeutschen „Schiet“, und was das bedeutet, ahnt man. Drinnen mit Tee klingt es gleich viel gemütlicher.', 'Duden · Schietwetter', DUDEN('Schietwetter')],
+  ['Gigil', 'Tagalog', 'Der Drang, etwas sehr Niedliches zu knuddeln oder zu drücken, ohne ihm wehtun zu wollen. Die Psychologie nennt das „cute aggression“.', 'Wikipedia · Cute aggression', ENWP('Cute_aggression')],
+  ['Joie de vivre', 'Französisch', 'Wörtlich „Freude am Leben“: heitere Lebenslust und ein beschwingtes Gemüt.', 'Wikipedia · Joie de vivre', ENWP('Joie_de_vivre')],
+  ['Moin', 'Norddeutsch', 'Der norddeutsche Gruß, der vielerorts zu jeder Tages- und Nachtzeit passt. Woher das Wort stammt, ist nicht geklärt. Eine verbreitete Erklärung leitet es von „moi“ ab: angenehm, gut, schön.', 'Wikipedia · Moin', WP('Moin')],
+  ['Ikigai', 'Japanisch', 'Wörtlich „ein Grund zu sein“: das, was dem Leben Wert und Freude gibt. Das bekannte Diagramm mit vier Kreisen stammt übrigens nicht aus Japan.', 'Wikipedia · Ikigai', ENWP('Ikigai')],
+  ['Lichtblick', 'Deutsch', 'Ein erfreuliches Ereignis oder eine schöne Aussicht in einer sonst eintönigen oder trüben Zeit. Passend zum kürzesten Tag des Jahres.', 'Duden · Lichtblick', DUDEN('Lichtblick')],
+  ['Pura vida', 'Spanisch (Costa Rica)', 'Wörtlich „reines Leben“. Der Ausdruck steht für die Lebensart in Costa Rica. Bekannt gemacht hat ihn ein mexikanischer Film von 1956.', 'Wikipedia · Pura Vida', ENWP('Pura_Vida')],
+  ['Geborgenheit', 'Deutsch', 'Ein Zustand von Sicherheit und Wohlgefühl. Das Wort gilt als unübersetzbar: Im Englischen, Französischen oder Russischen gibt es keine genaue Entsprechung.', 'Wikipedia · Geborgenheit', WP('Geborgenheit')],
+  ['Bescherung', 'Deutsch', 'Das Austauschen der Weihnachtsgeschenke. Das Wort kommt von mittelhochdeutsch „beschern“, zuteilen, und es gibt es nur im Deutschen.', 'Wikipedia · Bescherung', WP('Bescherung')]
 ];
 
 /* ================= Positive Gedanken ================= */
 /* Genau ein Gedanke pro Zimtschnecke (1 bis 36), jeweils mit Beleg-Verweis */
 const THOUGHTS = [
-  ['p28', 'Die erste Zimtschnecke ist da, ein kleiner Neuanfang. Solche Wendepunkte im Kalender geben nachweislich Schwung für gute Vorhaben. Schön, dass du da bist.'],
+  ['p28', 'Neue Anfänge haben Kraft: Ob neue Woche, neuer Monat oder einfach ein neuer Tag, solche Wendepunkte geben nachweislich Schwung für gute Vorhaben.'],
   ['p32', 'Gute Nachricht für heute: Die Menschen, mit denen du sprichst, mögen dich sehr wahrscheinlich mehr, als du glaubst. Das ist sogar erforscht.'],
   ['h15', 'Dein Lieblingslied setzt im Gehirn Dopamin frei, schon die Vorfreude auf die beste Stelle. Gönn dir heute eins, gern laut.'],
   ['p3', 'Gute Nachricht: Andere bemerken unsere kleinen Pannen viel seltener, als wir denken. Du darfst heute also ganz entspannt du selbst sein.'],
   ['h13', 'Wer um sechs Uhr schon trainiert hat, darf heute stolz sein: Bewegung wirkt nachweislich wie Medizin, für Körper und Kopf.'],
   ['p30', 'Eine kleine Freundlichkeit kommt bei anderen größer an, als man denkt. Und wer sie bekommt, ist danach oft selbst großzügiger.'],
   ['p9', 'Lachen steckt an, am leichtesten unter Menschen, die sich kennen. Starte heute ruhig eine kleine Lach-Epidemie.'],
-  ['z6', 'Heute ist ein guter Tag für eine Zimtschnecke. In Schweden gibt es dafür sogar einen eigenen Feiertag.'],
+  ['h25', 'Was du heute übst, verfeinert dein Gehirn heute Nacht ganz von allein. Schlaf ist eine Art Gratis-Training.'],
   ['p14', 'Herzklopfen vor etwas Wichtigem ist ein gutes Zeichen: Dein Körper stellt dir gerade Extra-Energie bereit.'],
   ['p15', 'Wofür bist du heute dankbar? Wer sich das regelmäßig notiert, blickt nachweislich optimistischer aufs Leben.'],
   ['p1', 'Erster Advent. Was uns vertraut ist, mögen wir meist besonders gern. Ein schöner Grund, liebgewonnene Rituale zu pflegen.'],
@@ -1403,10 +1254,15 @@ $('proof-btn').addEventListener('click', () => {
   $('proof-btn').setAttribute('aria-expanded', String(open));
 });
 
-/* ================= Zum Schmunzeln ================= */
+/* ================= Schönes Wort des Tages ================= */
 function renderCorner() {
+  const [w, lang, text, srcLabel, srcUrl] = WORDS[view - 1];
   $('mascot').innerHTML = mascot(view);
-  $('corner-text').textContent = POEMS[CORNER[view - 1]];
+  $('word').textContent = w;
+  $('word').classList.toggle('long', w.replace(/\u00AD/g, '').length > 13);
+  $('word-lang').textContent = lang;
+  $('word-text').textContent = text;
+  $('word-src').innerHTML = '<li><a href="' + esc(srcUrl) + '" target="_blank" rel="noopener">' + esc(srcLabel) + '</a></li>';
 }
 
 /* ================= Häppchen ================= */
